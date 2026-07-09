@@ -101,7 +101,7 @@
       "display_status": "active exploration; no accepted optimization yet",
       "current_lead": "No accepted optimization yet. The strongest current tradeoff row is cv32e40p_int_controller / reachable_irq_loop_encoder: area, timing, and equivalence were favorable in the consuming parent context, but toggle activity regressed, so it was rejected.",
       "known_receipt": "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json",
-      "boundary": "Exploratory evidence only; no full-core area/timing/power evidence, formal equivalence, toggle check, cold replay, accepted optimization, or headline claim.",
+      "boundary": "Exploratory evidence only; no accepted or full-core CV32E40P optimization, no full-core power claim, no cold replay, and no headline/customer impact claim.",
       "next_gate": "Find a candidate that passes selected-flow area/timing, formal equivalence, activity/toggle checks, and replay without a required-axis regression."
     },
     {
