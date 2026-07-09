@@ -1,0 +1,89 @@
+{
+  "schema": "athanor_riscv_frontier_status_v1",
+  "updated_utc": "2026-07-09T06:35:00Z",
+  "claim_policy": {
+    "method": "forward-deployed agents plus Kairos receipts",
+    "public_impact_today": "Ibex only",
+    "safe_summary": "Three accepted Ibex optimization artifacts, including one whole-core top-level survivor.",
+    "unsafe_claims": [
+      "three whole-core Ibex optimizations",
+      "aggregate whole-core Ibex percentage",
+      "non-Ibex RISC-V impact"
+    ]
+  },
+  "accepted_artifacts": [
+    {
+      "core": "ibex",
+      "artifact": "ibex_if_stage / expanded_predicate_factor",
+      "status": "accepted_top_level_survivor",
+      "scope": "whole_core_ibex_top",
+      "summary": "Whole-core selected-toolchain area and timing improve, toggle is flat, formal equivalence closes, and cold replay reproduced.",
+      "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/main/athanor_artifacts/if_stage_expanded_predicate_factor"
+    },
+    {
+      "core": "ibex",
+      "artifact": "ibex_multdiv_slow / greater_equal_xor_shape",
+      "status": "accepted_module_artifact",
+      "scope": "module",
+      "summary": "Module-scope area/timing positive, toggle flat, formal equivalence closed; not a whole-core headline.",
+      "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/main/athanor_artifacts/multdiv_slow_greater_equal_xor_shape"
+    },
+    {
+      "core": "ibex",
+      "artifact": "ibex_multdiv_fast / greater_equal_xor_shape",
+      "status": "accepted_module_artifact",
+      "scope": "module",
+      "summary": "Module-scope timing positive, cell/toggle flat, formal equivalence closed; not a whole-core headline.",
+      "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/main/athanor_artifacts/multdiv_fast_greater_equal_xor_shape"
+    }
+  ],
+  "scouted_cores": [
+    {
+      "core": "ibex",
+      "repo": "https://github.com/athanor-ai/ibex-athanor",
+      "status": "active_public_design_with_accepted_receipts",
+      "current_gate": "Dexter re-review of remaining candidate queue before CV32E40P move."
+    },
+    {
+      "core": "cv32e40p",
+      "repo": "https://github.com/athanor-ai/cv32e40p-athanor",
+      "status": "scout_lead_requires_selected_flow_review",
+      "current_lead": "id-stage hazard-tail factoring",
+      "known_receipt": "ath2686_cv32e40p_idstage_hazard_tail_profile.json",
+      "boundary": "Bounded module generic-Yosys profile only; no full-core PPA, formal, toggle, cold replay, accepted optimization, or headline claim.",
+      "next_gate": "Selected-flow area/timing review."
+    },
+    {
+      "core": "picorv32",
+      "repo": "https://github.com/YosysHQ/picorv32",
+      "status": "selected_flow_baseline_negative_replay",
+      "known_receipt": "ath2686_picorv32_baseline.json",
+      "boundary": "Baseline and residual detector reconnaissance only; no optimization claim.",
+      "next_gate": "New detector family or stronger selected-flow lead."
+    },
+    {
+      "core": "serv",
+      "repo": "https://github.com/olofk/serv",
+      "status": "selected_flow_baseline_no_spend_ready_candidate",
+      "known_receipt": "ath2686_serv_baseline.json",
+      "boundary": "Baseline only; no transform, formal, toggle, cold replay, or PPA win claim.",
+      "next_gate": "New detector family or selected-flow movement."
+    },
+    {
+      "core": "ultraembedded_riscv",
+      "repo": "https://github.com/ultraembedded/riscv",
+      "status": "selected_flow_baseline_no_spend_ready_candidate",
+      "known_receipt": "ath2686_ultraembedded_riscv_baseline.json",
+      "boundary": "Baseline only; source-level leads disappeared after selected-flow replay.",
+      "next_gate": "New detector family or selected-flow movement."
+    },
+    {
+      "core": "vexriscv",
+      "repo": "https://github.com/SpinalHDL/VexRiscv",
+      "status": "generator_toolchain_blocked_no_selected_flow_baseline",
+      "known_receipt": "ath2686_vexriscv_preflight.json",
+      "boundary": "Preflight only; no generated CPU RTL, detector spend, formal, toggle, cold replay, PPA result, or optimization claim.",
+      "next_gate": "Pinned generated CPU RTL artifact."
+    }
+  ]
+}
