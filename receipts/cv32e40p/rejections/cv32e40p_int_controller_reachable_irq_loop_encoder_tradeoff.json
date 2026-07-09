@@ -1,0 +1,94 @@
+{
+  "activity": {
+    "boundary_equality_every_cycle": true,
+    "cycles": 1000,
+    "gate_toggles": 359771,
+    "gold_toggles": 338551,
+    "linear_receipt": "https://linear.app/athanor-ai/issue/ATH-2852/kairos-proposer-lead-bank-use-fleet-discoveries-rejects-and-receipts#comment-3914966b",
+    "method": "cv32_controller_context_iverilog_vcd_hierarchy_toggle_v1",
+    "normalized_vcd_sha256": "36b94b61f904088accbf3bdffe04fa27fb7d348329d375dc1bf8bde4334b609f",
+    "required_exercise_measured": {
+      "irq_i": 4770,
+      "irq_id_ctrl": 5057,
+      "mie_bypass_i": 6324
+    },
+    "sim_log_sha256": "c724d1782cc952133c72ddc5aa4e295f11c6189fdcad90faaf43eaa4485e8f68",
+    "stimulus": "cv32.int_controller.interrupt_heavy+0x5eed1234",
+    "toggle_delta_pct": 6.267889,
+    "toggle_status": "regression",
+    "top": "cv32e40p_controller_int_context",
+    "trace_sha256": "d25ac636dbbb0154e4f501c925b0a9d946a462b6d6a7eedce46309f2e7c7fd33",
+    "vcd_sha256": "6ccc81f88d0812f0addd2cfa2d4ce016e2753b6a42f596913223e5909afeb36f"
+  },
+  "authorship": "Dexter agent, 2026-07-09",
+  "candidate": "cv32e40p_int_controller / reachable_irq_loop_encoder",
+  "classification": "parent_context_area_timing_equiv_positive_activity_regression_no_promotion",
+  "core": "cv32e40p",
+  "display_status": "rejected tradeoff",
+  "equivalence": {
+    "negative_control": "Dropping live irq_i[31] fails the same wrapper proof with 5 unproven controller_i.irq_id_ctrl_i cells.",
+    "negative_control_log_sha256": "bc5e6acc23c6a6cdf76cb10fcc05f1dfef7e92f50fda62e461deaedeb34cd22e",
+    "pulp_secure_0": {
+      "log_sha256": "72b1bd98ce6dd384aeaef97c32e5b8046ec9c5aadf1b068bc8bf417de235f492",
+      "proved": "197/197"
+    },
+    "pulp_secure_1": {
+      "log_sha256": "b4f2d1e1b3d77b0aa5d9948d3f153933a38e01f6e6083947884e8efcc658b0c8",
+      "proved": "198/198"
+    }
+  },
+  "fanout_audit": {
+    "changed_output": "irq_id_ctrl_o",
+    "linear_receipt": "https://linear.app/athanor-ai/issue/ATH-2852/kairos-proposer-lead-bank-use-fleet-discoveries-rejects-and-receipts#comment-bba827a0",
+    "result": "All real consumers of the changed irq_id_ctrl_o cone are inside cv32e40p_controller_int_context. mip_o leaves to CSR readback, but mip_o is assigned from irq_q and is unchanged by this candidate."
+  },
+  "fork_head": "6033d2b1be3295ec774d17ac4cf226faacfdeb08",
+  "not_claimed": [
+    "accepted CV32E40P optimization",
+    "whole-core CV32E40P result",
+    "power improvement",
+    "customer impact claim"
+  ],
+  "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+  "scope": "consuming_parent_context_cv32e40p_controller_plus_int_controller",
+  "selected_flow": {
+    "area": {
+      "baseline": 3365.728,
+      "delta_pct": -1.9702,
+      "gate": 3299.4144
+    },
+    "baseline_bundle_sha256": "154f7a7fe01e9f0539c3f38f8c4f5b938de158d2905d3ed626cd7fe7fe6761c3",
+    "baseline_sha256s_sha256": "83f08096f5be504f402f4fd52d9bed891d6f75a9113bec742280998bdeae3888",
+    "description": "Scratch wrapper wiring the real cv32e40p_int_controller into the real cv32e40p_controller, covering all real consumers of the edited irq_id_ctrl_o cone.",
+    "gate_bundle_sha256": "869f3e1369c7cbce3712b5f69681a1f9042867482b0a460843c14bbe5a2e5149",
+    "gate_sha256s_sha256": "615695ee8069e5fc7bcc02812a32128da370a73af303a7eee1acd2f52225dac3",
+    "timing_slack_ns": {
+      "in2out": {
+        "baseline": 1.43,
+        "gate": 1.8042
+      },
+      "in2reg": {
+        "baseline": 1.4057,
+        "gate": 1.6433
+      },
+      "overall": {
+        "baseline": 1.4057,
+        "gate": 1.6433
+      },
+      "reg2out": {
+        "baseline": 1.5394,
+        "gate": 1.9434
+      },
+      "reg2reg": {
+        "baseline": 1.5151,
+        "gate": 1.7826
+      }
+    },
+    "top": "cv32e40p_controller_int_context",
+    "wrapper_sha256": "2880c570f05bdaa6d1900cf5409900ffa6a19e282d8626c70f927a690b635cca"
+  },
+  "status": "rejected_tradeoff",
+  "summary": "Rejected because the consuming parent context improved area and timing and formal equivalence proved, but the exercised toggle/power proxy increased.",
+  "what_changed": "The interrupt ID encoder in cv32e40p_int_controller was rewritten to loop over reachable custom interrupt bits and skip reserved masked bits. The only edited output cone is irq_id_ctrl_o.",
+  "why_rejected": "Toggle activity increased under an interrupt-heavy exercised trace, so the candidate fails the activity/power axis even though area, timing, and equivalence were favorable in the consuming parent context."
+}
