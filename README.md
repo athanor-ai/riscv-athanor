@@ -65,6 +65,12 @@ optimization claim.
 A **detector** is an automated search rule that looks for a possible
 optimization. **Preflight** means setup work before a usable baseline exists.
 
+A **rejected tradeoff** is a candidate that improved at least one checked axis,
+such as area or timing, but failed another required axis. These rows are not
+optimization claims. They are included so readers can see what was tried, what
+improved, and why the candidate was not accepted. Candidates that fail every
+axis stay in the internal lead bank instead of cluttering this page.
+
 Do not read the Ibex module-level rows as whole-core Ibex wins, and do not read
 the non-Ibex exploratory rows as optimization claims. They are listed so the current
 state and the next evidence gate are visible.
@@ -82,6 +88,17 @@ including two whole-core results and three module-level results.
 
 Do not claim five whole-core Ibex optimizations, an aggregate whole-core Ibex
 percentage, or non-Ibex RISC-V impact until the relevant receipt exists.
+
+
+## Rejected Tradeoffs
+
+These rows explain candidates that looked promising on one evidence axis but
+were rejected because another required axis regressed. They are not accepted
+optimization artifacts.
+
+| Core | Candidate | Why It Was Rejected | Evidence |
+| --- | --- | --- | --- |
+| CV32E40P | `cv32e40p_int_controller / reachable_irq_loop_encoder` | In the real controller plus interrupt-controller context, area improved `3365.728000 -> 3299.414400` (`-1.9702%`) and all selected-flow timing groups improved; equivalence proved for both checked `PULP_SECURE` settings and a bad-mutant control failed as expected. It was rejected because exercised toggle activity increased `338551 -> 359771` (`+6.267889%`), which is a power-proxy regression. | [`cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json`](receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json) |
 
 ## Exploratory Work
 

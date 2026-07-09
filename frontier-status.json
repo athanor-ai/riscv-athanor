@@ -1,6 +1,6 @@
 {
   "schema": "athanor_riscv_frontier_status_v1",
-  "updated_utc": "2026-07-09T06:55:05Z",
+  "updated_utc": "2026-07-09T22:48:00Z",
   "claim_policy": {
     "method": "forward-deployed agents plus Kairos receipts",
     "public_impact_today": "Ibex only",
@@ -10,7 +10,8 @@
       "accepted_module_artifact": "Accepted module-level result: an optimization with evidence for one named RTL module; it is not a whole-core processor claim.",
       "accepted_module_local_artifact": "Accepted module-level result: an optimization with evidence for one named RTL module and its local proof obligations; it is not a whole-core processor claim.",
       "exploratory_lead": "Exploratory lead: a baseline, reconnaissance result, or early candidate that has not yet passed the full evidence path and is not an optimization claim.",
-      "receipt": "Machine-readable evidence file or hosted run linked from a row; it is the starting point for independently checking the claim."
+      "receipt": "Machine-readable evidence file or hosted run linked from a row; it is the starting point for independently checking the claim.",
+      "rejected_tradeoff": "Rejected tradeoff: a candidate with at least one favorable checked axis, such as area or timing, that is not accepted because another required axis regressed."
     },
     "metric_definitions": {
       "area": "Synthesis size estimate; lower is usually better.",
@@ -29,7 +30,8 @@
       "generic_yosys_no_abc": "Early synthesis screens that can identify leads but are not enough by themselves for an accepted optimization claim.",
       "detector": "Automated search rule that looks for a possible optimization.",
       "preflight": "Setup work before a usable baseline exists.",
-      "ppa": "Area, timing, and power-style evidence; this repo spells out the individual checks whenever a row claims impact."
+      "ppa": "Area, timing, and power-style evidence; this repo spells out the individual checks whenever a row claims impact.",
+      "activity": "Switching activity measured from a simulation trace; this repository uses it as a power proxy and rejects candidates that increase it unless a later sanctioned convention says otherwise."
     },
     "not_claimed": [
       "five whole-core Ibex optimizations",
@@ -97,10 +99,10 @@
       "repo": "https://github.com/athanor-ai/cv32e40p-athanor",
       "status": "active_exploration_no_accepted_optimization",
       "display_status": "active exploration; no accepted optimization yet",
-      "current_lead": "No current accepted lead. Recent module-level discovery has produced both early positives and negatives, but no candidate has cleared selected-flow plus follow-on gates.",
-      "known_receipt": "ath2686_cv32e40p_idstage_hazard_tail_profile.json",
+      "current_lead": "No accepted optimization yet. The strongest current tradeoff row is cv32e40p_int_controller / reachable_irq_loop_encoder: area, timing, and equivalence were favorable in the consuming parent context, but toggle activity regressed, so it was rejected.",
+      "known_receipt": "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json",
       "boundary": "Exploratory evidence only; no full-core area/timing/power evidence, formal equivalence, toggle check, cold replay, accepted optimization, or headline claim.",
-      "next_gate": "Promote only a candidate that passes selected-flow area/timing, then formal equivalence, activity checks, and replay."
+      "next_gate": "Find a candidate that passes selected-flow area/timing, formal equivalence, activity/toggle checks, and replay without a required-axis regression."
     },
     {
       "core": "picorv32",
@@ -137,6 +139,18 @@
       "known_receipt": "ath2686_vexriscv_preflight.json",
       "boundary": "Preflight only; no generated CPU RTL, detector run, formal equivalence, toggle check, cold replay, area/timing/power result, or optimization claim.",
       "next_gate": "Pinned generated CPU RTL artifact."
+    }
+  ],
+  "rejected_tradeoffs": [
+    {
+      "core": "cv32e40p",
+      "candidate": "cv32e40p_int_controller / reachable_irq_loop_encoder",
+      "status": "rejected_tradeoff",
+      "display_status": "rejected tradeoff",
+      "scope": "consuming_parent_context_cv32e40p_controller_plus_int_controller",
+      "summary": "Area improved 3365.728000 -> 3299.414400 (-1.9702%) and all selected-flow timing groups improved in the consuming parent context; Yosys equivalence proved for PULP_SECURE=0 and PULP_SECURE=1, and the negative control failed as expected. Rejected because exercised toggle activity increased 338551 -> 359771 (+6.267889%).",
+      "rejection_reason": "activity_power_regression",
+      "evidence": "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json"
     }
   ]
 }
