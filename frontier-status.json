@@ -1,12 +1,12 @@
 {
   "schema": "athanor_riscv_frontier_status_v1",
-  "updated_utc": "2026-07-09T06:35:00Z",
+  "updated_utc": "2026-07-09T06:55:05Z",
   "claim_policy": {
     "method": "forward-deployed agents plus Kairos receipts",
     "public_impact_today": "Ibex only",
-    "safe_summary": "Three accepted Ibex optimization artifacts, including one whole-core top-level survivor.",
+    "safe_summary": "Five accepted Ibex optimization artifacts, including two whole-core top-level survivors and three module-level artifacts.",
     "unsafe_claims": [
-      "three whole-core Ibex optimizations",
+      "five whole-core Ibex optimizations",
       "aggregate whole-core Ibex percentage",
       "non-Ibex RISC-V impact"
     ]
@@ -17,24 +17,40 @@
       "artifact": "ibex_if_stage / expanded_predicate_factor",
       "status": "accepted_top_level_survivor",
       "scope": "whole_core_ibex_top",
-      "summary": "Whole-core selected-toolchain area and timing improve, toggle is flat, formal equivalence closes, and cold replay reproduced.",
-      "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/main/athanor_artifacts/if_stage_expanded_predicate_factor"
+      "summary": "Whole-core ibex_top area 108428.9920 -> 108397.7120; all recorded WNS groups improve; toggle flat 311729 -> 311729; Yosys equiv 1956/1956; cold replay 6/6.",
+      "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/master/athanor_artifacts/if_stage_expanded_predicate_factor"
+    },
+    {
+      "core": "ibex",
+      "artifact": "ibex_top / no_bp_prefetch_direct",
+      "status": "accepted_top_level_survivor",
+      "scope": "whole_core_ibex_top",
+      "summary": "PR #31 whole-core ibex_top area 108441.5040 -> 108373.9392; WNS deltas +13.7942/+13.7942/+13.7924/+0.3407/+0.1761ns; toggle flat 311729 -> 311729; Yosys equiv 1956/1956; hosted OSS-FV green; cold review passed.",
+      "evidence": "https://github.com/athanor-ai/ibex-athanor/blob/ea0e5bc50e2322369a5cee166161acadbda417f0/athanor_artifacts/if_stage_no_bp_prefetch_direct/top_level_first/top_level_first_receipt.json"
     },
     {
       "core": "ibex",
       "artifact": "ibex_multdiv_slow / greater_equal_xor_shape",
       "status": "accepted_module_artifact",
       "scope": "module",
-      "summary": "Module-scope area/timing positive, toggle flat, formal equivalence closed; not a whole-core headline.",
-      "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/main/athanor_artifacts/multdiv_slow_greater_equal_xor_shape"
+      "summary": "Module-scope area 10339.9168 -> 10333.6608; data arrival 8.13ns -> 7.25ns; toggle flat 6117 -> 6117; Yosys equiv 411/411; not a whole-core headline.",
+      "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/master/athanor_artifacts/multdiv_slow_greater_equal_xor_shape"
     },
     {
       "core": "ibex",
       "artifact": "ibex_multdiv_fast / greater_equal_xor_shape",
       "status": "accepted_module_artifact",
       "scope": "module",
-      "summary": "Module-scope timing positive, cell/toggle flat, formal equivalence closed; not a whole-core headline.",
-      "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/main/athanor_artifacts/multdiv_fast_greater_equal_xor_shape"
+      "summary": "Module-scope cell metric flat 3306 -> 3306; max delay 10.85ns -> 10.57ns; toggle flat 7657 -> 7657; Yosys equiv 772/772; not a whole-core headline.",
+      "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/master/athanor_artifacts/multdiv_fast_greater_equal_xor_shape"
+    },
+    {
+      "core": "ibex",
+      "artifact": "ibex_fetch_fifo / err_unaligned_factored",
+      "status": "accepted_module_local_artifact",
+      "scope": "module",
+      "summary": "Module-scope generic cells 396 -> 395; liberty cells 456 -> 451 (-1.0965%); timing flat at 6.32ns; SAIF transition-count flat 34031 -> 34031; relation-aware sequential miter closes; no-external-occupancy miter closes; bad mutant fails; not a whole-core headline.",
+      "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/master/athanor_artifacts/fetch_fifo_err_unaligned_factored"
     }
   ],
   "scouted_cores": [
