@@ -4,8 +4,34 @@
   "claim_policy": {
     "method": "forward-deployed agents plus Kairos receipts",
     "public_impact_today": "Ibex only",
-    "safe_summary": "Five accepted Ibex optimization artifacts, including two whole-core top-level survivors and three module-level artifacts.",
-    "unsafe_claims": [
+    "public_summary": "Five accepted Ibex optimization artifacts, including two whole-core results and three module-level results.",
+    "status_definitions": {
+      "accepted_whole_core_result": "Accepted whole-core result: an optimization that stayed beneficial after integration into the whole processor and passed the recorded area, timing, activity, formal-equivalence, and replay checks.",
+      "accepted_module_artifact": "Accepted module-level result: an optimization with evidence for one named RTL module; it is not a whole-core processor claim.",
+      "accepted_module_local_artifact": "Accepted module-level result: an optimization with evidence for one named RTL module and its local proof obligations; it is not a whole-core processor claim.",
+      "exploratory_lead": "Exploratory lead: a baseline, reconnaissance result, or early candidate that has not yet passed the full evidence path and is not an optimization claim.",
+      "receipt": "Machine-readable evidence file or hosted run linked from a row; it is the starting point for independently checking the claim."
+    },
+    "metric_definitions": {
+      "area": "Synthesis size estimate; lower is usually better.",
+      "wns": "Worst negative slack, a timing metric where improvement means more timing margin.",
+      "data_arrival_max_delay": "Timing measurements where lower delay or better margin is better.",
+      "liberty_cells": "Cells counted after mapping to a standard-cell library.",
+      "toggle": "Switching-activity count used as a power proxy; flat means the checked count did not increase.",
+      "saif": "Switching-activity file format used for the toggle check.",
+      "yosys_equivalence": "Formal check that the optimized RTL preserves original behavior for the checked scope.",
+      "rtl": "Register-transfer-level hardware source code, usually Verilog or SystemVerilog.",
+      "miter": "Formal equivalence check that connects original and changed designs and proves relevant outputs match.",
+      "bad_mutant": "Intentionally wrong version used to prove a check fails when behavior changes.",
+      "oss_fv": "Hosted open-source formal-verification workflow used by the Ibex evidence runs.",
+      "cold_replay": "Receipt rerun from a fresh checkout or fresh environment instead of warm local state.",
+      "selected_flow": "Target-specific synthesis/timing flow used before spending time on deeper proof or activity checks.",
+      "generic_yosys_no_abc": "Early synthesis screens that can identify leads but are not enough by themselves for an accepted optimization claim.",
+      "detector": "Automated search rule that looks for a possible optimization.",
+      "preflight": "Setup work before a usable baseline exists.",
+      "ppa": "Area, timing, and power-style evidence; this repo spells out the individual checks whenever a row claims impact."
+    },
+    "not_claimed": [
       "five whole-core Ibex optimizations",
       "aggregate whole-core Ibex percentage",
       "non-Ibex RISC-V impact"
@@ -15,7 +41,8 @@
     {
       "core": "ibex",
       "artifact": "ibex_if_stage / expanded_predicate_factor",
-      "status": "accepted_top_level_survivor",
+      "status": "accepted_whole_core_result",
+      "display_status": "accepted whole-core result",
       "scope": "whole_core_ibex_top",
       "summary": "Whole-core ibex_top area 108428.9920 -> 108397.7120; all recorded WNS groups improve; toggle flat 311729 -> 311729; Yosys equiv 1956/1956; cold replay 6/6.",
       "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/master/athanor_artifacts/if_stage_expanded_predicate_factor"
@@ -23,7 +50,8 @@
     {
       "core": "ibex",
       "artifact": "ibex_top / no_bp_prefetch_direct",
-      "status": "accepted_top_level_survivor",
+      "status": "accepted_whole_core_result",
+      "display_status": "accepted whole-core result",
       "scope": "whole_core_ibex_top",
       "summary": "PR #31 whole-core ibex_top area 108441.5040 -> 108373.9392; WNS deltas +13.7942/+13.7942/+13.7924/+0.3407/+0.1761ns; toggle flat 311729 -> 311729; Yosys equiv 1956/1956; hosted OSS-FV green; cold review passed.",
       "evidence": "https://github.com/athanor-ai/ibex-athanor/blob/ea0e5bc50e2322369a5cee166161acadbda417f0/athanor_artifacts/if_stage_no_bp_prefetch_direct/top_level_first/top_level_first_receipt.json"
@@ -32,6 +60,7 @@
       "core": "ibex",
       "artifact": "ibex_multdiv_slow / greater_equal_xor_shape",
       "status": "accepted_module_artifact",
+      "display_status": "accepted module-level result",
       "scope": "module",
       "summary": "Module-scope area 10339.9168 -> 10333.6608; data arrival 8.13ns -> 7.25ns; toggle flat 6117 -> 6117; Yosys equiv 411/411; not a whole-core headline.",
       "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/master/athanor_artifacts/multdiv_slow_greater_equal_xor_shape"
@@ -40,6 +69,7 @@
       "core": "ibex",
       "artifact": "ibex_multdiv_fast / greater_equal_xor_shape",
       "status": "accepted_module_artifact",
+      "display_status": "accepted module-level result",
       "scope": "module",
       "summary": "Module-scope cell metric flat 3306 -> 3306; max delay 10.85ns -> 10.57ns; toggle flat 7657 -> 7657; Yosys equiv 772/772; not a whole-core headline.",
       "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/master/athanor_artifacts/multdiv_fast_greater_equal_xor_shape"
@@ -48,6 +78,7 @@
       "core": "ibex",
       "artifact": "ibex_fetch_fifo / err_unaligned_factored",
       "status": "accepted_module_local_artifact",
+      "display_status": "accepted module-level result",
       "scope": "module",
       "summary": "Module-scope generic cells 396 -> 395; liberty cells 456 -> 451 (-1.0965%); timing flat at 6.32ns; SAIF transition-count flat 34031 -> 34031; relation-aware sequential miter closes; no-external-occupancy miter closes; bad mutant fails; not a whole-core headline.",
       "evidence": "https://github.com/athanor-ai/ibex-athanor/tree/master/athanor_artifacts/fetch_fifo_err_unaligned_factored"
@@ -58,21 +89,24 @@
       "core": "ibex",
       "repo": "https://github.com/athanor-ai/ibex-athanor",
       "status": "active_public_design_with_accepted_receipts",
-      "current_gate": "Dexter re-review of remaining candidate queue before CV32E40P move."
+      "display_status": "active design with accepted Ibex evidence",
+      "current_gate": "Check additional Ibex candidates only when they have fresh evidence to add or reject."
     },
     {
       "core": "cv32e40p",
       "repo": "https://github.com/athanor-ai/cv32e40p-athanor",
-      "status": "scout_lead_requires_selected_flow_review",
-      "current_lead": "id-stage hazard-tail factoring",
+      "status": "active_exploration_no_accepted_optimization",
+      "display_status": "active exploration; no accepted optimization yet",
+      "current_lead": "No current accepted lead. Recent module-level discovery has produced both early positives and negatives, but no candidate has cleared selected-flow plus follow-on gates.",
       "known_receipt": "ath2686_cv32e40p_idstage_hazard_tail_profile.json",
-      "boundary": "Bounded module generic-Yosys profile only; no full-core PPA, formal, toggle, cold replay, accepted optimization, or headline claim.",
-      "next_gate": "Selected-flow area/timing review."
+      "boundary": "Exploratory evidence only; no full-core area/timing/power evidence, formal equivalence, toggle check, cold replay, accepted optimization, or headline claim.",
+      "next_gate": "Promote only a candidate that passes selected-flow area/timing, then formal equivalence, activity checks, and replay."
     },
     {
       "core": "picorv32",
       "repo": "https://github.com/YosysHQ/picorv32",
       "status": "selected_flow_baseline_negative_replay",
+      "display_status": "baseline and replay completed; no accepted result",
       "known_receipt": "ath2686_picorv32_baseline.json",
       "boundary": "Baseline and residual detector reconnaissance only; no optimization claim.",
       "next_gate": "New detector family or stronger selected-flow lead."
@@ -81,14 +115,16 @@
       "core": "serv",
       "repo": "https://github.com/olofk/serv",
       "status": "selected_flow_baseline_no_spend_ready_candidate",
+      "display_status": "baseline completed; no candidate ready for deeper evaluation",
       "known_receipt": "ath2686_serv_baseline.json",
-      "boundary": "Baseline only; no transform, formal, toggle, cold replay, or PPA win claim.",
+      "boundary": "Baseline only; no transform, formal equivalence, toggle check, cold replay, or area/timing/power win claim.",
       "next_gate": "New detector family or selected-flow movement."
     },
     {
       "core": "ultraembedded_riscv",
       "repo": "https://github.com/ultraembedded/riscv",
       "status": "selected_flow_baseline_no_spend_ready_candidate",
+      "display_status": "baseline completed; no candidate ready for deeper evaluation",
       "known_receipt": "ath2686_ultraembedded_riscv_baseline.json",
       "boundary": "Baseline only; source-level leads disappeared after selected-flow replay.",
       "next_gate": "New detector family or selected-flow movement."
@@ -97,8 +133,9 @@
       "core": "vexriscv",
       "repo": "https://github.com/SpinalHDL/VexRiscv",
       "status": "generator_toolchain_blocked_no_selected_flow_baseline",
+      "display_status": "preflight blocked before selected-flow baseline",
       "known_receipt": "ath2686_vexriscv_preflight.json",
-      "boundary": "Preflight only; no generated CPU RTL, detector spend, formal, toggle, cold replay, PPA result, or optimization claim.",
+      "boundary": "Preflight only; no generated CPU RTL, detector run, formal equivalence, toggle check, cold replay, area/timing/power result, or optimization claim.",
       "next_gate": "Pinned generated CPU RTL artifact."
     }
   ]
