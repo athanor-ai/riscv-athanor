@@ -1,6 +1,6 @@
 {
   "schema": "athanor_riscv_frontier_status_v1",
-  "updated_utc": "2026-07-10T15:34:33Z",
+  "updated_utc": "2026-07-10T15:40:22Z",
   "claim_policy": {
     "method": "forward-deployed agents plus Kairos receipts",
     "public_impact_today": "Ibex only",
@@ -170,6 +170,16 @@
     }
   ],
   "rejected_tradeoffs": [
+    {
+      "core": "ibex",
+      "candidate": "ibex_load_store_unit / signext_factor",
+      "status": "rejected_tradeoff",
+      "display_status": "rejected tradeoff",
+      "scope": "module_local_ibex_load_store_unit",
+      "summary": "The LSU module-local selected-flow run improved area 4695.753600 -> 4664.473600 (-0.6662%) and max data-arrival timing 5.59ns -> 3.89ns, while Yosys equivalence proved 287/287 cells. Rejected because deterministic LSU-local toggle replay regressed 55424 -> 56421 (+1.79886%).",
+      "rejection_reason": "toggle_power_proxy_regression",
+      "evidence": "receipts/ibex/rejections/ibex_load_store_unit_signext_factor_tradeoff.json"
+    },
     {
       "core": "cv32e40p",
       "candidate": "cv32e40p_int_controller / reachable_irq_loop_encoder",

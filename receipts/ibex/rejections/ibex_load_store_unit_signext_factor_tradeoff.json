@@ -1,0 +1,67 @@
+{
+  "activity": {
+    "gate_toggles": 56421,
+    "gold_toggles": 55424,
+    "method": "iverilog_vcd_hierarchy_toggle",
+    "simulation_cycles": 200,
+    "status": "regressed",
+    "stimulus": "deterministic_lsu_local_trace_v1",
+    "toggle_delta_pct": 1.79886
+  },
+  "artifact": "ibex_load_store_unit / signext_factor",
+  "authorship": "Dexter agent, curated for the public rejected-tradeoff table on 2026-07-10",
+  "classification": "area_timing_formal_positive_toggle_regression_no_promotion",
+  "core": "ibex",
+  "display_status": "rejected tradeoff",
+  "evidence": {
+    "artifact_path": "https://github.com/athanor-ai/ibex-athanor/tree/master/athanor_artifacts/load_store_unit_signext_factor",
+    "input_sha256sums_sha256": "9500eef5750acf43535ee5e9e8fb9f9a1facf12c600fabe86d6b668f15f90822",
+    "local_verification": [
+      "sha256sum -c INPUT_SHA256SUMS",
+      "sha256sum -c SHA256SUMS"
+    ],
+    "sha256sums_sha256": "5734f8cdd8e82392b228c1314062323ac0bd93751227d59b660b25945bd751ee"
+  },
+  "formal_equivalence": {
+    "method": "yosys_equiv_make_async2sync_equiv_induct_seq32_equiv_simple",
+    "proven_cells": 287,
+    "status": "proved",
+    "unproven_cells": 0
+  },
+  "not_claimed": [
+    "accepted Ibex optimization",
+    "whole-core Ibex result",
+    "customer-ready claim",
+    "toggle or power improvement",
+    "aggregate Ibex whole-core percentage",
+    "non-Ibex RISC-V impact"
+  ],
+  "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+  "scope": "module_local_ibex_load_store_unit",
+  "selected_flow": {
+    "area": {
+      "baseline": 4695.7536,
+      "delta_percent": -0.6662,
+      "gate": 4664.4736,
+      "status": "improved"
+    },
+    "timing": {
+      "baseline_max_data_arrival_ns": 5.59,
+      "delta_ns": -1.7,
+      "gate_max_data_arrival_ns": 3.89,
+      "status": "improved",
+      "tns_ns": 0,
+      "wns_ns": 0
+    }
+  },
+  "source_delta": {
+    "gate_source_sha256": "48719a1ebe7e99c6c80b7bdcc392f8668edf398ab42c3118633c1044f07dacb2",
+    "gold_source_sha256": "cf32b24f749d7a1ad8e2675ed5747fcabade6595d99621cdabf6c7990611130e",
+    "source_diff_sha256": "677cdfa91d08503f56b316199db08414de5be4768660dad070bd2f73f6cfaaa6",
+    "summary": "Factors repeated load sign-extension mux arms into replicated sign-bit masks for byte and half-word load data extension."
+  },
+  "status": "rejected_tradeoff",
+  "summary": "Rejected because the selected-toolchain area, timing, and equivalence checks were favorable, but the deterministic LSU-local toggle replay regressed 55424 -> 56421 (+1.79886%).",
+  "what_changed": "The load-store unit sign-extension paths for byte and half-word loads were rewritten from repeated zero/sign-extension mux arms into concatenations using data_sign_ext_q and the relevant sign bit.",
+  "why_rejected": "The module-local candidate improves area and max data-arrival timing and proves equivalent, but the checked toggle proxy increases. Under the current evidence bar, that power-proxy regression stops promotion."
+}
