@@ -1,0 +1,157 @@
+{
+  "schema": "athanor_riscv_accepted_scope_typed_receipt_v1",
+  "core": "cv32e40p",
+  "artifact": "cv32e40p_alu / addsub_divvalid_adderneg_prefixes",
+  "status": "accepted_scope_typed_optimization",
+  "display_status": "accepted scope-typed optimization",
+  "scope": "default_alu_parent_context",
+  "summary": "The CV32E40P ALU combined three-predicate rewrite is accepted only at the measured default ALU parent context: area improves 29548.339200 -> 29208.012800 (-1.151762%), all five parent timing groups improve, activity/toggle is flat 1482734 -> 1482734, and the source-local combined predicate SAT proof closes with three biting negative controls. This is not a whole-core or customer-ready CV32E40P claim.",
+  "authorship": "Dexter agent, curated for the first public CV32E40P accepted row on 2026-07-10",
+  "claim_taxonomy": {
+    "schema": "cv32_claim_taxonomy_v1",
+    "accepted_optimization": "claimed",
+    "claim_scope": "default_alu_parent_context",
+    "ppa_scope": "default ALU parent context",
+    "semantic_equivalence_scope": "source-local combined predicate equivalence",
+    "whole_core": "not_claimed",
+    "customer_impact": "not_claimed",
+    "customer_claim_ready": false,
+    "promotion_state": "not_customer_ready"
+  },
+  "source_packet_boundary": {
+    "source_status": "evidence_packet",
+    "source_packet_accepted_optimization": "not_claimed",
+    "public_curation_delta": "This riscv-athanor receipt promotes the packet to an accepted optimization only at its measured default ALU parent-context scope after the ATH-2900 taxonomy landed.",
+    "full_parent_equivalence": "not_claimed",
+    "whole_core": "not_measured",
+    "customer_impact": "not_claimed"
+  },
+  "metrics": {
+    "selected_flow": {
+      "top": "cv32e40p_alu_parent_context",
+      "area": {
+        "baseline": 29548.3392,
+        "gate": 29208.0128,
+        "delta_percent": -1.151762,
+        "status": "improved"
+      },
+      "timing_slack": {
+        "in2out": {
+          "baseline": -20.2186,
+          "gate": -16.467,
+          "status": "improved"
+        },
+        "in2reg": {
+          "baseline": -16.2551,
+          "gate": -13.9334,
+          "status": "improved"
+        },
+        "overall": {
+          "baseline": -20.2186,
+          "gate": -16.467,
+          "status": "improved"
+        },
+        "reg2out": {
+          "baseline": -2.4968,
+          "gate": -2.1568,
+          "status": "improved"
+        },
+        "reg2reg": {
+          "baseline": -4.9985,
+          "gate": -4.1625,
+          "status": "improved"
+        }
+      },
+      "baseline_sha256s_sha256": "395f1d20549f6811cc2032815ba0159a3bb3b65e36483386ca91fe68e78b4e6f",
+      "gate_sha256s_sha256": "d1edfcc359f1d835cd17561cfc0373a81f00b2bac2582b56a73bf921aaf2694e"
+    },
+    "activity": {
+      "method": "cv32_alu_parent_div_rem_heavy_iverilog_vcd_hierarchy_toggle_v1",
+      "scope": "alu_parent_context_activity_proxy_not_full_core_power_claim",
+      "baseline_toggles": 1482734,
+      "gate_toggles": 1482734,
+      "toggle_delta_percent": 0.0,
+      "boundary_equality_every_cycle": true,
+      "common_paths": 762,
+      "status": "flat"
+    }
+  },
+  "semantic_evidence": {
+    "type": "source_local_combined_predicate_sat",
+    "method": "Yosys output-level SAT, proving combined diff_o == 0 over the rewritten predicate surface",
+    "positive": {
+      "result": "SUCCESS: no model found for diff_o=1",
+      "log": "predicate_equiv/positive/yosys_sat.log",
+      "log_sha256": "334da679aad30d4b1189649160b7e07a50e54f35d096fbacef65856eb91b7406"
+    },
+    "negative_controls": {
+      "negative_adder_even_subs": {
+        "result": "FAIL: model found with diff_o=1",
+        "log_sha256": "4b2e807a3772694b13f3896dedbbebb6068967e71ac6e92888580a9f240c49b3"
+      },
+      "negative_addsub_prefix_0101": {
+        "result": "FAIL: model found with diff_o=1",
+        "log_sha256": "2093006356fed63851a690596fc0a43133366690ea81b8c69a3a610d9584e191"
+      },
+      "negative_div_prefix_01101": {
+        "result": "FAIL: model found with diff_o=1",
+        "log_sha256": "d54ef1bf312468b3cfdec2cba731d348f1de8eb9e3b84852bc86c87cee62d6a1"
+      }
+    }
+  },
+  "source_delta": {
+    "replacement_count": 3,
+    "behavioral_movements_outside_predicates": 0,
+    "source_diff_sha256": "d2ab01be55be4fb8cae60ab7d274e8e70fab2ab0a70ef6e91a4abdf1efdf7ae4"
+  },
+  "relationship_to_prior_packets": {
+    "not_additive_with": [
+      "alu_divrem_prefix_valid"
+    ],
+    "supersets": [
+      {
+        "candidate_id": "alu_divrem_prefix_valid",
+        "cv32e40p_athanor_pr": "https://github.com/athanor-ai/cv32e40p-athanor/pull/3",
+        "shared_predicates": [
+          "div_valid"
+        ],
+        "dominance_note": "This packet includes the div_valid rewrite from the div-valid-only packet and adds shift_use_round plus adder_op_b_negate rewrites. Treat the packets as overlapping alternatives, not additive wins."
+      }
+    ],
+    "table_guidance": "Do not sum this row with alu_divrem_prefix_valid or any other overlapping ALU predicate packet."
+  },
+  "evidence": {
+    "cv32e40p_athanor_pr": "https://github.com/athanor-ai/cv32e40p-athanor/pull/5",
+    "artifact_tree": "https://github.com/athanor-ai/cv32e40p-athanor/tree/d237959d34e014a0596549650c2ee03c2d3075ec/athanor_artifacts/alu_addsub_divvalid_adderneg_prefixes",
+    "manifest": "https://github.com/athanor-ai/cv32e40p-athanor/blob/d237959d34e014a0596549650c2ee03c2d3075ec/athanor_artifacts/alu_addsub_divvalid_adderneg_prefixes/cv32e40p_alu_addsub_divvalid_adderneg_manifest.json",
+    "manifest_sha256": "264c1ce64c6c4db7004799ea61567d7fac1b210f9e74151b4986abddc650cbda",
+    "commands": "https://github.com/athanor-ai/cv32e40p-athanor/blob/d237959d34e014a0596549650c2ee03c2d3075ec/athanor_artifacts/alu_addsub_divvalid_adderneg_prefixes/COMMANDS.md",
+    "commands_sha256": "08ac8d1207cadc8e51809147cb0b8df24d74a454f4d0cd7107130069ab931b2c",
+    "activity_receipt_sha256": "663c089f9444874441778f45f19383e1a4219217304b49631e629c8f35269260",
+    "source_artifact_commit": "d237959d34e014a0596549650c2ee03c2d3075ec",
+    "packet_introduction_commit": "d7014b5",
+    "taxonomy_annotation_commit": "246d7eb",
+    "kairos_native_receipt_type": "sat_predicate_equiv"
+  },
+  "replay_commands": [
+    "sha256sum -c SHA256SUMS",
+    "python3 replay_source_delta.py",
+    "python3 replay_predicate_equiv.py",
+    "python3 replay_selected_summary.py",
+    "python3 activity/replay_toggle.py",
+    "python3 -m json.tool cv32e40p_alu_addsub_divvalid_adderneg_manifest.json >/dev/null"
+  ],
+  "not_claimed": [
+    "whole-core CV32E40P result",
+    "full parent formal equivalence proof",
+    "customer_claim_ready",
+    "customer impact claim",
+    "full-core power claim",
+    "additive combination with alu_divrem_prefix_valid"
+  ],
+  "toolchain": {
+    "flow": "Yosys 0.66 selected-flow plus source-local SAT replay",
+    "oss_cad_suite": "oss-cad-suite-20260630",
+    "toolchain_lock_sha256": "bbc9b14e23f4f09b1ec76e9e551d89a26bd7e169095cf5ae0f1e63c81afee512"
+  }
+}
