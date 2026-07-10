@@ -1,0 +1,71 @@
+{
+  "activity": {
+    "gate_toggles": 5977,
+    "gold_toggles": 5977,
+    "method": "iverilog_toggle_on_sv2v_normalized_rtl",
+    "simulation_cycles": 200,
+    "status": "flat",
+    "toggle_delta_pct": 0
+  },
+  "artifact": "ibex_alu / bwlogic_or_from_xor_and",
+  "authorship": "Dexter agent, curated for the public rejected-tradeoff table on 2026-07-10",
+  "classification": "area_positive_toggle_flat_propagation_delay_negative_no_promotion",
+  "core": "ibex",
+  "display_status": "rejected tradeoff",
+  "evidence": {
+    "artifact_path": "https://github.com/athanor-ai/ibex-athanor/tree/master/athanor/ppa_frontier/ibex_alu_bwlogic",
+    "local_verification": [
+      "python3 athanor/verify_public_receipts.py"
+    ],
+    "manifest_sha256": "d8058a5d9f751cb41d13d52a580c960d8b39f09f5fc31d65b68d4706bdc91add"
+  },
+  "formal_equivalence": {
+    "independent_verification": "reproduced formal and PPA metrics",
+    "method": "yosys_sat_miter",
+    "proven_cells": 1627,
+    "status": "proved",
+    "unproven_cells": 0
+  },
+  "not_claimed": [
+    "accepted Ibex optimization",
+    "full-PPA frontier row",
+    "whole-core Ibex result",
+    "customer-ready claim",
+    "timing improvement",
+    "aggregate Ibex whole-core percentage",
+    "non-Ibex RISC-V impact"
+  ],
+  "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+  "scope": "module_local_ibex_alu_selected_toolchain",
+  "selected_flow": {
+    "area": {
+      "baseline": 5471.4976,
+      "delta_percent": -6.3801,
+      "gate": 5122.4128,
+      "status": "improved"
+    },
+    "row_contract": "area_tradeoff_yosys66",
+    "timing": {
+      "baseline_max_propagation_delay_ns": 8.83,
+      "delta_ns": 1.73,
+      "delta_percent": 19.59229898074745,
+      "gate_max_propagation_delay_ns": 10.56,
+      "status": "regressed",
+      "timing_convention": "combinational_max_propagation_delay"
+    },
+    "toolchain": {
+      "oss_cad_suite_release": "2026-06-30",
+      "yosys": "Yosys 0.66+181",
+      "yosys_git_sha": "afe6b18f2"
+    }
+  },
+  "source_delta": {
+    "gate_source_sha256": "1a6b6237d0bfecbebadc75cc71a2ba68d817cb864a08825ab3e3c01e3bad20bf",
+    "gold_source_sha256": "06ce1c3ce30807f715478cf9e3bc279cac1c1cc2fb95d289516169fadcf7b7dc",
+    "summary": "Consolidates a bitwise OR expression from XOR/AND structure in ibex_alu."
+  },
+  "status": "rejected_tradeoff",
+  "summary": "Rejected because selected-toolchain area improves and toggle is flat, but the load-bearing combinational max-propagation-delay receipt regresses 8.83ns -> 10.56ns.",
+  "what_changed": "The ALU bitwise logic implementation rewrites an OR-shaped expression through a consolidated bwlogic transform.",
+  "why_rejected": "The Ibex public verifier classifies the row as area_tradeoff_yosys66: selected-toolchain area improves and toggle is flat, but max propagation delay regresses, so the candidate cannot be promoted as a full-PPA frontier row."
+}
