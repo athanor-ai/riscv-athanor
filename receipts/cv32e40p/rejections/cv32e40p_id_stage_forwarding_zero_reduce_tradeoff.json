@@ -1,0 +1,103 @@
+{
+    "activity": {
+        "status": "not_run",
+        "reason": "The ID-stage selected-flow bar failed on timing, so no activity or toggle packet was spent."
+    },
+    "authorship": "Dexter agent, 2026-07-10",
+    "candidate": "cv32e40p_id_stage / forwarding_zero_reduce",
+    "classification": "id_stage_area_positive_timing_negative_no_promotion",
+    "core": "cv32e40p",
+    "display_status": "rejected tradeoff",
+    "equivalence": {
+        "status": "not_run",
+        "reason": "The ID-stage selected-flow timing bar failed, so no formal equivalence packet was spent."
+    },
+    "fork_head": "246d7eb4bfbc4c49999e1838aada10a31397f356",
+    "not_claimed": [
+        "accepted CV32E40P optimization",
+        "whole-core CV32E40P result",
+        "ID-stage formal equivalence proof",
+        "activity or power improvement",
+        "cold replay",
+        "customer impact claim"
+    ],
+    "replay": {
+        "status": "not_run",
+        "reason": "Replay is reserved for candidates that pass the selected-flow area and timing bar."
+    },
+    "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+    "scope": "selected_flow_context_cv32e40p_id_stage",
+    "selected_flow": {
+        "description": "Scratch selected-flow run for the ID-stage context after replacing forwarding zero checks with reduction-OR predicates.",
+        "id_stage": {
+            "area": {
+                "baseline": 107040.16,
+                "delta_pct": -0.725891,
+                "gate": 106263.1648
+            },
+            "baseline_bundle_sha256": "8e939d05fcf46fdf82f9b72f721fca08befd6ee54066d308b1fb7a81ca0dc944",
+            "baseline_manifest_sha256": "41ec5b4272aba49b54571670ab8bdd8f45f1366ae7ae39d09dbb82fef645c240",
+            "gate_bundle_sha256": "3980246b3e2caf6084d44dc1e4b960668ba10940c22f64e8f781d64f2b3709cf",
+            "gate_manifest_sha256": "0c526bbcc0b791dd05ffca1a39fdf4b4581f97150b9094f17cc156cf3f06f894",
+            "timing_slack_ns": {
+                "in2out": {
+                    "baseline": -9.3325,
+                    "delta": -0.8707,
+                    "gate": -10.2032,
+                    "status": "regressed"
+                },
+                "in2reg": {
+                    "baseline": -10.9759,
+                    "delta": -2.0928,
+                    "gate": -13.0687,
+                    "status": "regressed"
+                },
+                "overall": {
+                    "baseline": -10.9759,
+                    "delta": -2.0928,
+                    "gate": -13.0687,
+                    "status": "regressed"
+                },
+                "reg2out": {
+                    "baseline": -1.1193,
+                    "delta": -4.1732,
+                    "gate": -5.2925,
+                    "status": "regressed"
+                },
+                "reg2reg": {
+                    "baseline": -2.0873,
+                    "delta": -2.5222,
+                    "gate": -4.6095,
+                    "status": "regressed"
+                }
+            },
+            "top": "cv32e40p_id_stage"
+        }
+    },
+    "source_delta": {
+        "baseline_source_sha256": "98b246d9ada45a7073d217d5c3bbc86941ee76bb00e7e0edda61d3bbec83728e",
+        "gate_source_sha256": "9aaf5fed2c181deff72aee04de8066da0692e7bd08fdf8b6c3f945833b74a634",
+        "replacements": [
+            {
+                "count": 3,
+                "new_predicate": "(|regfile_addr_ra_id)",
+                "old_predicate": "regfile_addr_ra_id != '0"
+            },
+            {
+                "count": 3,
+                "new_predicate": "(|regfile_addr_rb_id)",
+                "old_predicate": "regfile_addr_rb_id != '0"
+            },
+            {
+                "count": 3,
+                "new_predicate": "(|regfile_addr_rc_id)",
+                "old_predicate": "regfile_addr_rc_id != '0"
+            }
+        ],
+        "summary": "Nine forwarding zero checks in the ID-stage forwarding logic were rewritten from inequality-against-zero predicates to equivalent reduction-OR predicates."
+    },
+    "status": "rejected_tradeoff",
+    "summary": "Rejected because the ID-stage selected-flow run improved area but regressed all five timing groups.",
+    "what_changed": "The ID-stage forwarding logic's regfile_addr_{ra,rb,rc}_id != '0 predicates were rewritten as reduction-OR predicates.",
+    "why_rejected": "The selected-flow area win did not clear timing: area improved 107040.160000 -> 106263.164800, but in2out, in2reg, overall, reg2out, and reg2reg timing all regressed, so the candidate stopped before equivalence, activity, or replay spend."
+}
