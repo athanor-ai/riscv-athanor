@@ -1,0 +1,167 @@
+{
+  "schema": "athanor_riscv_accepted_scope_typed_receipt_v1",
+  "core": "cv32e40p",
+  "artifact": "cv32e40p_prefetch_controller / prefetch_hwlp_plus_next_cnt_arith",
+  "status": "accepted_scope_typed_optimization",
+  "display_status": "accepted scope-typed optimization",
+  "scope": "default_if_stage_parent_context_with_named_prefetch_buffer_caveat",
+  "summary": "The CV32E40P prefetch HWLP plus next-count arithmetic packet is accepted only at the default IF-stage parent-context scope: IF-stage area improves 18228.732800 -> 18187.443200 (-0.226508%), all five IF-stage timing groups improve, activity/toggle is flat 21739 -> 21739, and the source-local combined predicate SAT proof closes with two biting negative controls. The immediate prefetch-buffer parent has a named local in2out regression, so this row is not a standalone prefetch-buffer reuse claim.",
+  "authorship": "Dexter agent, curated for CV32E40P scope-typed accepted rows on 2026-07-10",
+  "claim_taxonomy": {
+    "schema": "cv32_claim_taxonomy_v1",
+    "accepted_optimization": "claimed",
+    "claim_scope": "default_if_stage_parent_context_with_named_prefetch_buffer_caveat",
+    "ppa_scope": "default IF-stage parent context",
+    "semantic_equivalence_scope": "source-local combined predicate equivalence",
+    "whole_core": "not_claimed",
+    "customer_impact": "not_claimed",
+    "customer_claim_ready": false,
+    "promotion_state": "not_customer_ready",
+    "local_caveat": "prefetch-buffer parent in2out regression is first-class and blocks standalone prefetch-buffer reuse wording"
+  },
+  "source_packet_boundary": {
+    "source_status": "evidence_packet",
+    "source_packet_accepted_optimization": "not_claimed",
+    "public_curation_delta": "This riscv-athanor receipt promotes the packet to an accepted optimization only at its measured IF-stage parent-context scope after the ATH-2900 taxonomy landed.",
+    "prefetch_buffer_reuse": "not_claimed because local in2out timing regresses",
+    "whole_core": "not_measured",
+    "customer_impact": "not_claimed"
+  },
+  "metrics": {
+    "claim_scope_if_stage": {
+      "top": "cv32e40p_if_stage",
+      "area": {
+        "baseline": 18228.7328,
+        "gate": 18187.4432,
+        "delta_percent": -0.226508,
+        "status": "improved"
+      },
+      "timing_slack": {
+        "in2out": {
+          "baseline": 1.1039,
+          "gate": 1.1215,
+          "delta": 0.0176,
+          "status": "improved"
+        },
+        "in2reg": {
+          "baseline": -1.876,
+          "gate": -0.4452,
+          "delta": 1.4308,
+          "status": "improved"
+        },
+        "overall": {
+          "baseline": -1.876,
+          "gate": -1.0617,
+          "delta": 0.8143,
+          "status": "improved"
+        },
+        "reg2out": {
+          "baseline": 0.9203,
+          "gate": 0.9677,
+          "delta": 0.0474,
+          "status": "improved"
+        },
+        "reg2reg": {
+          "baseline": -1.7646,
+          "gate": -1.0617,
+          "delta": 0.7029,
+          "status": "improved"
+        }
+      },
+      "baseline_sha256s_sha256": "597f5a43dde2fb94b4a9da87dd7cd6abba406026bc64bf7ea46d05c7f53b8978",
+      "gate_sha256s_sha256": "c8c1d106afea9e4d144870aebd8acda3a090b66335e3adb95440c9d85362514b"
+    },
+    "local_caveat_prefetch_buffer": {
+      "top": "cv32e40p_prefetch_buffer",
+      "area": {
+        "baseline": 7186.8928,
+        "gate": 7130.5888,
+        "delta_percent": -0.783426,
+        "status": "improved"
+      },
+      "named_regression": {
+        "group": "in2out",
+        "baseline": 2.6664,
+        "gate": 2.6492,
+        "delta": -0.0172,
+        "interpretation": "This local in2out regression is first-class disclosure; customers with this local path as a constraint should inspect before reuse."
+      }
+    },
+    "activity": {
+      "method": "prefetch_buffer_hwlp_activity_iverilog_vcd_hierarchy_toggle_v1",
+      "scope": "prefetch_buffer_boundary_activity_proxy_not_full_core_power_claim",
+      "baseline_toggles": 21739,
+      "gate_toggles": 21739,
+      "toggle_delta_percent": 0.0,
+      "boundary_equality_every_cycle": true,
+      "common_paths": 110,
+      "status": "flat"
+    }
+  },
+  "semantic_evidence": {
+    "type": "source_local_combined_predicate_sat",
+    "method": "Yosys output-level SAT over both replacement outputs",
+    "positive": {
+      "result": "SUCCESS: no model found for diff_o=1",
+      "log_sha256": "dd42ea5c9912328428d9288ee06d2a99932a22af45e332a5a8c1690e35ab8db1"
+    },
+    "negative_controls": {
+      "negative_nextcnt_missing_down": {
+        "result": "FAIL: next-count arithmetic leg bites",
+        "log_sha256": "80da07e681d3e7c3ae1fdf261ba27b9330bc5d016db243ad3e7629e955950cab"
+      },
+      "negative_wrong_demorgan": {
+        "result": "FAIL: De Morgan leg bites",
+        "log_sha256": "d3ff04d4664ecb0122b01d7aa1755b3ae316ba211637df842e24ea85de3c97c7"
+      }
+    }
+  },
+  "source_delta": {
+    "replacement_count": 2,
+    "behavioral_movements_outside_replacements": 0,
+    "source_diff_sha256": "6640e6d2115b888e62548463dfc635142d8268cca6fdcfd46f800c5b0944174c"
+  },
+  "relationship_to_prior_packets": {
+    "not_additive_with": [
+      "prefetch_hwlp_flush_demorgan"
+    ],
+    "supersets": [
+      {
+        "candidate_id": "prefetch_hwlp_flush_demorgan",
+        "cv32e40p_athanor_pr": "https://github.com/athanor-ai/cv32e40p-athanor/pull/6",
+        "shared_replacement": "hwlp_flush_resp De Morgan",
+        "dominance_note": "This packet includes #6's De Morgan replacement and adds next_cnt arithmetic. It improves IF-stage area/timing versus baseline but carries a named local prefetch-buffer in2out regression; do not sum deltas with #6."
+      }
+    ],
+    "table_guidance": "Present this as a dual-scope successor/alternative to #6, not an additive row."
+  },
+  "evidence": {
+    "cv32e40p_athanor_pr": "https://github.com/athanor-ai/cv32e40p-athanor/pull/10",
+    "artifact_tree": "https://github.com/athanor-ai/cv32e40p-athanor/tree/d237959d34e014a0596549650c2ee03c2d3075ec/athanor_artifacts/prefetch_hwlp_plus_next_cnt_arith",
+    "manifest": "https://github.com/athanor-ai/cv32e40p-athanor/blob/d237959d34e014a0596549650c2ee03c2d3075ec/athanor_artifacts/prefetch_hwlp_plus_next_cnt_arith/cv32e40p_prefetch_hwlp_plus_next_cnt_arith_manifest.json",
+    "manifest_sha256": "1fa1253b064cff3cefcfea6ec38a1681b3ca63d35ca1fec30145cd359028dd4f",
+    "commands": "https://github.com/athanor-ai/cv32e40p-athanor/blob/d237959d34e014a0596549650c2ee03c2d3075ec/athanor_artifacts/prefetch_hwlp_plus_next_cnt_arith/COMMANDS.md",
+    "commands_sha256": "81b3525095e139495ed69639cdae5636b19d977fd1e1a02846350c2fc0b38ccd",
+    "predicate_summary_sha256": "807d8dec767c9275083b5ed94bff492aa694ae8455c83f48dcd1d1b5a4842ca9",
+    "activity_receipt_sha256": "ed8949e9bb28de07424e963b752274d4f889804639ffda4d1827e28e15de5157",
+    "source_artifact_commit": "d237959d34e014a0596549650c2ee03c2d3075ec",
+    "kairos_native_receipt_type": "sat_predicate_equiv"
+  },
+  "replay_commands": [
+    "sha256sum -c SHA256SUMS",
+    "python3 replay_source_delta.py",
+    "python3 replay_predicate_equiv.py",
+    "python3 replay_selected_summary.py",
+    "python3 activity/replay_toggle.py",
+    "python3 -m json.tool cv32e40p_prefetch_hwlp_plus_next_cnt_arith_manifest.json >/dev/null"
+  ],
+  "not_claimed": [
+    "standalone prefetch-buffer reuse win",
+    "whole-core CV32E40P result",
+    "full parent formal equivalence proof",
+    "customer_claim_ready",
+    "customer impact claim",
+    "full-core power claim",
+    "additive combination with prefetch_hwlp_flush_demorgan"
+  ]
+}
