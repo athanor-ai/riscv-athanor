@@ -1,0 +1,77 @@
+{
+  "activity": {
+    "status": "not_run",
+    "reason": "The selected-flow parent timing bar failed, so no activity or toggle packet was spent."
+  },
+  "authorship": "Dexter agent, 2026-07-10",
+  "candidate": "cv32e40p_load_store_unit / data_sign_ext_zero_reduce",
+  "classification": "selected_flow_area_positive_timing_regression_no_promotion",
+  "core": "cv32e40p",
+  "display_status": "rejected tradeoff",
+  "equivalence": {
+    "status": "not_run",
+    "reason": "The selected-flow parent timing bar failed, so no equivalence packet was spent."
+  },
+  "fork_head": "6033d2b1be3295ec774d17ac4cf226faacfdeb08",
+  "not_claimed": [
+    "accepted CV32E40P optimization",
+    "whole-core CV32E40P result",
+    "formal equivalence proof",
+    "activity or power improvement",
+    "cold replay",
+    "customer impact claim"
+  ],
+  "replay": {
+    "status": "not_run",
+    "reason": "Replay is reserved for candidates that pass the parent selected-flow bar."
+  },
+  "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+  "scope": "selected_flow_parent_context_cv32e40p_lsu_ex_context",
+  "selected_flow": {
+    "area": {
+      "baseline": 5950.7072,
+      "delta_pct": -0.294365,
+      "gate": 5933.1904
+    },
+    "description": "Scratch cv32e40p_lsu_ex_context selected-flow wrapper containing the load-store unit in an EX-stage parent context.",
+    "gate_bundle_sha256": "c8f4f81621f9d8a63ce0aca09243da5265f2057fab38b390bc96403edeb84905",
+    "gate_source_sha256": "f16ecefa08bec08b3fa9a4fba71c2c1de5786fb8ded1326fb1a3aa57cf4d1c76",
+    "timing_slack_ns": {
+      "in2out": {
+        "baseline": -0.8415,
+        "delta": -0.94,
+        "gate": -1.7815,
+        "status": "regressed"
+      },
+      "in2reg": {
+        "baseline": 1.4147,
+        "delta": -0.3263,
+        "gate": 1.0884,
+        "status": "regressed"
+      },
+      "overall": {
+        "baseline": -0.8415,
+        "delta": -0.94,
+        "gate": -1.7815,
+        "status": "regressed"
+      },
+      "reg2out": {
+        "baseline": 1.4104,
+        "delta": -0.0218,
+        "gate": 1.3886,
+        "status": "regressed"
+      },
+      "reg2reg": {
+        "baseline": 1.6216,
+        "delta": -0.0218,
+        "gate": 1.5998,
+        "status": "regressed"
+      }
+    },
+    "top": "cv32e40p_lsu_ex_context"
+  },
+  "status": "rejected_tradeoff",
+  "summary": "Rejected because the LSU EX-stage parent selected-flow run reduced area but worsened all recorded timing groups.",
+  "what_changed": "The two-bit data_sign_ext_q zero check was rewritten from equality to a reduction predicate.",
+  "why_rejected": "Area improved, but in2out, in2reg, overall, reg2out, and reg2reg timing slack all regressed in the parent selected-flow context. The candidate stopped before equivalence, activity, or replay spend."
+}
