@@ -1,0 +1,137 @@
+{
+  "activity": {
+    "aa_control_status": "clean",
+    "activity_receipt_sha256": "2e46a5520eadb0b93ffc399d749ec67b3febb3aa65be20de486173f141640570",
+    "all_identifier_delta_pct": -1.599301,
+    "boundary_equality_every_cycle": true,
+    "common_path_delta_pct": 0.0,
+    "gate_common_path_toggles": 1377510,
+    "gold_common_path_toggles": 1377510,
+    "scope": "alu_parent_context_activity_proxy_not_ex_stage_or_full_core_power_claim",
+    "status": "neutral_or_better",
+    "stimulus": "popcount_heavy_alu_parent_trace",
+    "trace_sha256": "0e46983ecf8a1281e2bb56487ca64d8f9b9f6d83c04c610230091476545ee0a6"
+  },
+  "authorship": "Dexter agent, 2026-07-10",
+  "candidate": "cv32e40p_popcnt / nibble_lut",
+  "classification": "alu_parent_positive_ex_stage_reg2out_negative_no_promotion",
+  "core": "cv32e40p",
+  "display_status": "rejected tradeoff",
+  "equivalence": {
+    "gate_source_sha256": "6067ca0d488dbe252a20644c6f1c883b04e436098c4daeb973a948daf181d41a",
+    "gold_source_sha256": "227732537c3ace861476b3a8600396bfb503b2ce0010123dc0873f24c62955bb",
+    "negative_bad_nibble_1111": {
+      "log_sha256": "4f001e09282555a6070b2350d23b0598cdf8e5f0f685db9ef16e3193b4d63ec8",
+      "rc": 1,
+      "status": "bites"
+    },
+    "positive": {
+      "log_sha256": "d9f3f71802a5f1a5bcdf5ebe16e3f4d3227c9b695ecb4f3bbd96f0ee435b8d8d",
+      "rc": 0,
+      "status": "proves"
+    },
+    "status": "module_output_sat_positive_with_biting_negative"
+  },
+  "fork_head": "6033d2b1be3295ec774d17ac4cf226faacfdeb08",
+  "not_claimed": [
+    "accepted CV32E40P optimization",
+    "whole-core CV32E40P result",
+    "EX-stage formal equivalence proof",
+    "EX-stage or full-core activity or power improvement",
+    "cold replay",
+    "customer impact claim"
+  ],
+  "replay": {
+    "status": "not_run",
+    "reason": "The EX-stage ALU context timing bar failed on reg2out, so no replay package was spent."
+  },
+  "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+  "scope": "alu_parent_positive_with_ex_stage_context_rejection",
+  "selected_flow": {
+    "alu_parent": {
+      "area": {
+        "baseline": 29841.12,
+        "delta_pct": -0.557652,
+        "gate": 29674.7104
+      },
+      "baseline_bundle_sha256": "5fd62f774faa85847150bcbc51b704a75ec6a325f311323639c1dc990f2caf84",
+      "baseline_manifest_sha256": "db624266ba00cb2f32eed79420df3fc5b76a74bd45cbcea6c95f967e4a28e8e5",
+      "gate_bundle_sha256": "ee5b64c17bc61a9046f2e63dd05062f93a02d6b68999d93d3fc04e1adf13267d",
+      "gate_manifest_sha256": "01094fe74e982070e4f9d637b36b48444ef113f03509dfdf3fd2c3eb9ac24ff7",
+      "timing_slack_ns": {
+        "overall_single_metric": {
+          "baseline": -13.98,
+          "delta": 0.0,
+          "gate": -13.98,
+          "status": "flat"
+        }
+      },
+      "top": "cv32e40p_alu"
+    },
+    "ex_stage_alu_context": {
+      "area": {
+        "baseline": 29361.9104,
+        "delta_pct": -0.09801,
+        "gate": 29333.1328
+      },
+      "baseline_bundle_sha256": "34aa4c125b67f63efab390c20c090d8ba320eea8999ddd0c212e90d0932ce67a",
+      "baseline_manifest_sha256": "d16dc94553c3f286ad04e42f3cd3b9270ec6a746bc8da2c325815c2b04508f9d",
+      "gate_bundle_sha256": "eb386613bde35d059edcabee5631443eb8fcb847e2b6167de5ef47fd92789ead",
+      "gate_manifest_sha256": "e781750e31aeebafe43b35ba22a93e52d3091b863ed5793914244f50b6420309",
+      "summary_sha256": "44d3ec6739e8e6c2e9c94c17725eeb2c19e046ac54380bd0066d387aeb2390de",
+      "timing_slack_delta_ns": {
+        "in2out": {
+          "baseline": -20.3613,
+          "delta": 2.1506,
+          "gate": -18.2107,
+          "status": "improved"
+        },
+        "in2reg": {
+          "baseline": -17.0827,
+          "delta": 1.3517,
+          "gate": -15.731,
+          "status": "improved"
+        },
+        "overall": {
+          "baseline": -20.3613,
+          "delta": 2.1506,
+          "gate": -18.2107,
+          "status": "improved"
+        },
+        "reg2out": {
+          "baseline": -1.2725,
+          "delta": -0.5401,
+          "gate": -1.8126,
+          "status": "regressed"
+        },
+        "reg2reg": {
+          "baseline": -5.1657,
+          "delta": 0.9932,
+          "gate": -4.1725,
+          "status": "improved"
+        }
+      },
+      "top": "cv32e40p_ex_stage_alu_context"
+    },
+    "module": {
+      "area": {
+        "baseline": 934.6464,
+        "delta_pct": -0.267738,
+        "gate": 932.144
+      },
+      "baseline_manifest_sha256": "a13dfe7d386d4a0feb225ab130d7ffbeba2f369adaf0a72f103347f2f4e4623c",
+      "gate_manifest_sha256": "f834d73056cd0f5bcf7a8ed5335e285a0efababa0855f9ea443d981cb105b0d4",
+      "top": "cv32e40p_popcnt"
+    }
+  },
+  "source_delta": {
+    "gate_source_sha256": "6067ca0d488dbe252a20644c6f1c883b04e436098c4daeb973a948daf181d41a",
+    "gold_source_sha256": "227732537c3ace861476b3a8600396bfb503b2ce0010123dc0873f24c62955bb",
+    "summary": "Replaces the staged bit-pair adder tree with a four-bit lookup function plus byte and half-word accumulation.",
+    "variant": "nibble_lut"
+  },
+  "status": "rejected_tradeoff",
+  "summary": "Rejected because the popcount rewrite improved module and ALU-parent area, closed the module output SAT check with a biting negative control, and stayed activity-neutral in the ALU-parent proxy, but the enclosing EX-stage ALU context regressed reg2out timing.",
+  "what_changed": "The popcount implementation in cv32e40p_popcnt was rewritten from a staged pairwise adder tree into a nibble lookup plus accumulation structure.",
+  "why_rejected": "The module and ALU-parent results were favorable, but the enclosing EX-stage ALU context regressed reg2out slack -1.2725 -> -1.8126 while the candidate had not produced an EX-stage equivalence or activity receipt. The candidate therefore stops as a rejected tradeoff rather than a promoted CV32E40P optimization."
+}
