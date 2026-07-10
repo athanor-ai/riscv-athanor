@@ -1,0 +1,72 @@
+{
+  "activity": {
+    "gate_toggles": 2664,
+    "gold_toggles": 2664,
+    "method": "iverilog_toggle_on_sv2v_normalized_rtl",
+    "simulation_cycles": 200,
+    "status": "flat",
+    "toggle_delta_pct": 0
+  },
+  "artifact": "ibex_pmp / tor_boundary_comparator_share",
+  "authorship": "Dexter agent, curated for the public rejected-tradeoff table on 2026-07-10",
+  "classification": "area_positive_toggle_flat_propagation_delay_negative_no_promotion",
+  "core": "ibex",
+  "display_status": "rejected tradeoff",
+  "evidence": {
+    "artifact_path": "https://github.com/athanor-ai/ibex-athanor/tree/master/athanor/ppa_frontier/ibex_pmp_tor_comparator_share",
+    "cold_replay_bundle": "https://github.com/athanor-ai/ibex-athanor/tree/master/athanor_artifacts/ibex_pmp_tor_comparator_share",
+    "local_verification": [
+      "python3 athanor/verify_public_receipts.py"
+    ],
+    "manifest_sha256": "f03c015fd3f6314314ee4331c016294effd5d6cbd673261e24db86cfd2bbfdff",
+    "sha256sums_sha256": "a17f7827547d3efc949638b0d13aff8cbeb3d7b01dac2633bd6eda4054619232"
+  },
+  "formal_equivalence": {
+    "independent_verification_status": "pending_cross_vm",
+    "method": "yosys_sat_miter",
+    "non_vacuity": "mutant on pmp_req_err_o expected to fail",
+    "status": "author_box_pass"
+  },
+  "not_claimed": [
+    "accepted Ibex optimization",
+    "full-PPA frontier row",
+    "whole-core Ibex result",
+    "customer-ready claim",
+    "timing improvement",
+    "aggregate Ibex whole-core percentage",
+    "non-Ibex RISC-V impact"
+  ],
+  "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+  "scope": "module_local_ibex_pmp_selected_toolchain",
+  "selected_flow": {
+    "area": {
+      "baseline": 13042.5088,
+      "delta_percent": -12.5096,
+      "gate": 11410.944,
+      "status": "improved"
+    },
+    "row_contract": "area_tradeoff_yosys66",
+    "timing": {
+      "baseline_max_propagation_delay_ns": 5.467,
+      "delta_ns": 0.048,
+      "delta_percent": 0.878,
+      "gate_max_propagation_delay_ns": 5.515,
+      "status": "regressed",
+      "timing_convention": "combinational_max_propagation_delay"
+    },
+    "toolchain": {
+      "oss_cad_suite_release": "2026-06-30",
+      "yosys": "Yosys 0.66+181",
+      "yosys_git_sha": "afe6b18f2"
+    }
+  },
+  "source_delta": {
+    "gate_source_sha256": "24d874367f33149fac371df8f75d95231ff92795c30ea2c3b46f7a79a3bd4592",
+    "gold_source_sha256": "a564fb312d5337b0875d16f434e8b69348e12c2560548fad93f9270f9c4b9176",
+    "summary": "Shares the PMP TOR-boundary comparator structure in ibex_pmp."
+  },
+  "status": "rejected_tradeoff",
+  "summary": "Rejected because the selected-toolchain area row is strongly positive and toggle-flat, but the load-bearing combinational max-propagation-delay receipt regresses 5.467ns -> 5.515ns.",
+  "what_changed": "The PMP TOR-boundary comparator implementation was rewritten to share comparator structure.",
+  "why_rejected": "The Ibex public verifier classifies the row as area_tradeoff_yosys66: selected-toolchain area improves and toggle is flat, but the max propagation delay regresses, so the candidate cannot be promoted as a full-PPA frontier row."
+}
