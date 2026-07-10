@@ -1,10 +1,10 @@
 {
   "schema": "athanor_riscv_frontier_status_v1",
-  "updated_utc": "2026-07-10T22:39:54Z",
+  "updated_utc": "2026-07-10T22:47:00Z",
   "claim_policy": {
     "method": "forward-deployed agents plus Kairos receipts",
-    "public_impact_today": "Five accepted Ibex artifacts plus one scope-typed accepted CV32E40P ALU parent-context optimization; no full-core or customer-ready CV32E40P claim.",
-    "public_summary": "Six accepted optimization artifacts: five Ibex artifacts and one CV32E40P default ALU parent-context accepted optimization.",
+    "public_impact_today": "Five accepted Ibex artifacts plus three scope-typed accepted CV32E40P parent-context optimizations; no full-core or customer-ready CV32E40P claim.",
+    "public_summary": "Eight accepted optimization artifacts: five Ibex artifacts and three CV32E40P parent-context accepted optimizations.",
     "status_definitions": {
       "accepted_whole_core_result": "Accepted whole-core result: an optimization that stayed beneficial after integration into the whole processor and passed the recorded area, timing, activity, formal-equivalence, and replay checks.",
       "accepted_module_artifact": "Accepted module-level result: an optimization with evidence for one named RTL module; it is not a whole-core processor claim.",
@@ -12,7 +12,7 @@
       "exploratory_lead": "Exploratory lead: a baseline, reconnaissance result, or early candidate that has not yet passed the full evidence path and is not an optimization claim.",
       "receipt": "Machine-readable evidence file or hosted run linked from a row; it is the starting point for independently checking the claim.",
       "rejected_tradeoff": "Rejected tradeoff: a candidate with at least one favorable checked axis, such as area or timing, that is not accepted because another required axis regressed.",
-      "accepted_scope_typed_optimization": "Accepted scope-typed optimization: an optimization accepted only for the named measured scope in its receipt; it is not a whole-core or customer-ready claim unless those scopes are explicitly claimed."
+      "accepted_scope_typed_optimization": "Accepted scope-typed optimization: an optimization accepted only for the named measured scope in its receipt; it is not a whole-core, customer-ready, or additive-composition claim unless those scopes are explicitly claimed."
     },
     "metric_definitions": {
       "area": "Synthesis size estimate; lower is usually better.",
@@ -126,6 +126,58 @@
         "additive combination with alu_divrem_prefix_valid"
       ],
       "evidence": "receipts/cv32e40p/accepted/cv32e40p_alu_addsub_divvalid_adderneg_prefixes_accepted.json"
+    },
+    {
+      "core": "cv32e40p",
+      "artifact": "cv32e40p_prefetch_controller / prefetch_hwlp_flush_demorgan",
+      "status": "accepted_scope_typed_optimization",
+      "display_status": "accepted scope-typed optimization",
+      "scope": "prefetch_buffer_parent_context",
+      "summary": "Prefetch-buffer parent context area 7186.892800 -> 7170.627200 (-0.226323%); all five prefetch-buffer timing groups improve; activity flat 21739 -> 21739; source-local predicate SAT closes with two biting negatives; IF-stage wrapper is neutral, not claimed as a win; customer_claim_ready=false.",
+      "claim_taxonomy": {
+        "accepted_optimization": "claimed",
+        "customer_claim_ready": false,
+        "scope": "prefetch_buffer_parent_context",
+        "scope_subject": "cv32e40p_prefetch_buffer",
+        "whole_core": "not_claimed",
+        "customer_impact": "not_claimed"
+      },
+      "not_claimed": [
+        "IF-stage win",
+        "whole-core CV32E40P result",
+        "full parent formal equivalence proof",
+        "customer_claim_ready",
+        "customer impact claim",
+        "full-core power claim"
+      ],
+      "evidence": "receipts/cv32e40p/accepted/cv32e40p_prefetch_hwlp_flush_demorgan_accepted.json"
+    },
+    {
+      "core": "cv32e40p",
+      "artifact": "cv32e40p_prefetch_controller / prefetch_hwlp_plus_next_cnt_arith",
+      "status": "accepted_scope_typed_optimization",
+      "display_status": "accepted scope-typed optimization",
+      "scope": "default_if_stage_parent_context_with_named_prefetch_buffer_caveat",
+      "summary": "Default IF-stage parent context area 18228.732800 -> 18187.443200 (-0.226508%); all five IF-stage timing groups improve; activity flat 21739 -> 21739; source-local combined predicate SAT closes with two biting negatives; local prefetch-buffer in2out regresses 2.6664 -> 2.6492, so this is not standalone prefetch-buffer reuse wording; non-additive with prefetch_hwlp_flush_demorgan; customer_claim_ready=false.",
+      "claim_taxonomy": {
+        "accepted_optimization": "claimed",
+        "customer_claim_ready": false,
+        "scope": "default_if_stage_parent_context_with_named_prefetch_buffer_caveat",
+        "scope_subject": "cv32e40p_if_stage",
+        "whole_core": "not_claimed",
+        "customer_impact": "not_claimed",
+        "local_caveat": "prefetch-buffer parent in2out regression blocks standalone prefetch-buffer reuse wording"
+      },
+      "not_claimed": [
+        "standalone prefetch-buffer reuse win",
+        "whole-core CV32E40P result",
+        "full parent formal equivalence proof",
+        "customer_claim_ready",
+        "customer impact claim",
+        "full-core power claim",
+        "additive combination with prefetch_hwlp_flush_demorgan"
+      ],
+      "evidence": "receipts/cv32e40p/accepted/cv32e40p_prefetch_hwlp_plus_next_cnt_arith_accepted.json"
     }
   ],
   "scouted_cores": [
@@ -139,12 +191,14 @@
     {
       "core": "cv32e40p",
       "repo": "https://github.com/athanor-ai/cv32e40p-athanor",
-      "status": "active_exploration_with_scope_typed_accepted_optimization",
-      "display_status": "active exploration with one accepted ALU parent-context optimization",
-      "current_lead": "First accepted CV32E40P row is cv32e40p_alu / addsub_divvalid_adderneg_prefixes at default ALU parent-context scope. Public tradeoff rows still record interrupt-controller, load-store-unit, aligner, FIFO, multiplier, CSR, ALU, popcount, compressed-decoder, and ID-stage candidates that improved one axis but failed activity, timing, or parent/reusable-scope timing.",
+      "status": "active_exploration_with_scope_typed_accepted_optimizations",
+      "display_status": "active exploration with three accepted parent-context optimizations",
+      "current_lead": "Accepted CV32E40P rows now cover cv32e40p_alu / addsub_divvalid_adderneg_prefixes at default ALU parent-context scope plus two prefetch-controller packets at their measured prefetch-buffer or IF-stage parent-context scopes. Public tradeoff rows still record candidates that improved one axis but failed activity, timing, or parent/reusable-scope timing.",
       "known_receipt": "receipts/cv32e40p/accepted/cv32e40p_alu_addsub_divvalid_adderneg_prefixes_accepted.json",
       "known_receipts": [
         "receipts/cv32e40p/accepted/cv32e40p_alu_addsub_divvalid_adderneg_prefixes_accepted.json",
+        "receipts/cv32e40p/accepted/cv32e40p_prefetch_hwlp_flush_demorgan_accepted.json",
+        "receipts/cv32e40p/accepted/cv32e40p_prefetch_hwlp_plus_next_cnt_arith_accepted.json",
         "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json",
         "receipts/cv32e40p/rejections/cv32e40p_load_store_unit_rotated_payload_tradeoff.json",
         "receipts/cv32e40p/rejections/cv32e40p_load_store_unit_data_sign_ext_tradeoff.json",
@@ -157,8 +211,8 @@
         "receipts/cv32e40p/rejections/cv32e40p_compressed_decoder_l599_ne11_tradeoff.json",
         "receipts/cv32e40p/rejections/cv32e40p_id_stage_forwarding_zero_reduce_tradeoff.json"
       ],
-      "boundary": "One accepted CV32E40P optimization only at default ALU parent-context scope; no full-core CV32E40P result, no full parent formal equivalence proof, no full-core power claim, no customer-ready claim, and no headline/customer impact claim.",
-      "next_gate": "Promote additional parent-clean packets only at their measured scope, then keep any full-core/customer wording behind ATH-2899 composition/proof and ATH-2901 customer certificate gates."
+      "boundary": "Accepted CV32E40P rows are parent-context scoped only; no full-core CV32E40P result, no full parent formal equivalence proof, no full-core power claim, no customer-ready claim, no headline/customer impact claim, and no additive composition across overlapping packets.",
+      "next_gate": "Promote additional packets only at their measured scope, carry non-additive relationships and local caveats, then keep any full-core/customer wording behind ATH-2899 composition/proof and ATH-2901 customer certificate gates."
     },
     {
       "core": "picorv32",

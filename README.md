@@ -11,11 +11,11 @@ supports.
 
 ## Current Public Status
 
-Today, public RISC-V evidence includes five accepted Ibex artifacts and one
-scope-typed accepted CV32E40P artifact. The Ibex evidence consists of two
+Today, public RISC-V evidence includes five accepted Ibex artifacts and three
+scope-typed accepted CV32E40P artifacts. The Ibex evidence consists of two
 whole-core results and three module-level results. The CV32E40P evidence is
-accepted only at its measured ALU parent-context scope; it is not a full-core
-or customer-ready CV32E40P claim.
+accepted only at each row's measured parent-context scope; it is not a
+full-core or customer-ready CV32E40P claim.
 
 ## How To Read This Page
 
@@ -41,9 +41,10 @@ but it is not a claim about the entire Ibex core. These rows are still useful
 engineering results, but they are deliberately separated from whole-core rows.
 
 A **scope-typed accepted optimization** means the result is accepted only for
-the named measured scope in its receipt. For CV32E40P today, that means the row
-can claim the ALU parent-context result it measured, but it cannot claim
-whole-core CV32E40P impact, customer impact, or customer-ready certification.
+the named measured scope in its receipt. For CV32E40P today, that means each
+row can claim the parent-context result it measured, but it cannot claim
+whole-core CV32E40P impact, customer impact, customer-ready certification, or
+additive composition with overlapping packets.
 
 **Area** is a synthesis size estimate, where lower is usually better. **WNS**
 means worst negative slack, a timing metric where improvement means more timing
@@ -85,7 +86,7 @@ improved, and why the candidate was not accepted. Candidates that fail every
 axis stay in the internal lead bank instead of cluttering this page.
 
 Do not read the Ibex module-level rows as whole-core Ibex wins, and do not read
-the CV32E40P parent-context row as a whole-core or customer-ready CV32E40P win.
+the CV32E40P parent-context rows as whole-core or customer-ready CV32E40P wins.
 The exploratory rows are listed so the current state and the next evidence gate
 are visible.
 
@@ -97,13 +98,15 @@ are visible.
 | Ibex | `ibex_multdiv_fast / greater_equal_xor_shape` | Accepted module-level result | Module scope only: cell metric flat `3306 -> 3306`; max delay `10.85ns -> 10.57ns`; toggle flat `7657 -> 7657`; Yosys equivalence `772/772`; not a whole-core headline | [`ibex-athanor/athanor_artifacts/multdiv_fast_greater_equal_xor_shape`](https://github.com/athanor-ai/ibex-athanor/tree/master/athanor_artifacts/multdiv_fast_greater_equal_xor_shape) |
 | Ibex | `ibex_fetch_fifo / err_unaligned_factored` | Accepted module-level result | Module scope only: generic cells `396 -> 395`; liberty cells `456 -> 451` (`-1.0965%`); timing flat at `6.32ns`; SAIF transition-count flat `34031 -> 34031`; relation-aware sequential miter closes; not a whole-core headline | [`ibex-athanor/athanor_artifacts/fetch_fifo_err_unaligned_factored`](https://github.com/athanor-ai/ibex-athanor/tree/master/athanor_artifacts/fetch_fifo_err_unaligned_factored) |
 | CV32E40P | `cv32e40p_alu / addsub_divvalid_adderneg_prefixes` | Accepted scope-typed optimization | Default ALU parent context only: area `29548.339200 -> 29208.012800` (`-1.151762%`); all five parent timing groups improve; activity flat `1482734 -> 1482734`; source-local combined predicate SAT closes with three biting negatives; non-additive with `alu_divrem_prefix_valid`; `customer_claim_ready=false`; not a whole-core or customer-ready claim | [`cv32e40p_alu_addsub_divvalid_adderneg_prefixes_accepted.json`](receipts/cv32e40p/accepted/cv32e40p_alu_addsub_divvalid_adderneg_prefixes_accepted.json) |
+| CV32E40P | `cv32e40p_prefetch_controller / prefetch_hwlp_flush_demorgan` | Accepted scope-typed optimization | Prefetch-buffer parent context only: area `7186.892800 -> 7170.627200` (`-0.226323%`); all five prefetch-buffer timing groups improve; activity flat `21739 -> 21739`; source-local predicate SAT closes with two biting negatives; IF-stage wrapper is neutral, not claimed as a win; `customer_claim_ready=false` | [`cv32e40p_prefetch_hwlp_flush_demorgan_accepted.json`](receipts/cv32e40p/accepted/cv32e40p_prefetch_hwlp_flush_demorgan_accepted.json) |
+| CV32E40P | `cv32e40p_prefetch_controller / prefetch_hwlp_plus_next_cnt_arith` | Accepted scope-typed optimization | Default IF-stage parent context with named local caveat: IF-stage area `18228.732800 -> 18187.443200` (`-0.226508%`); all five IF-stage timing groups improve; activity flat `21739 -> 21739`; source-local combined predicate SAT closes with two biting negatives; prefetch-buffer local `in2out` regresses `2.6664 -> 2.6492`, so this is not standalone prefetch-buffer reuse wording; non-additive with `prefetch_hwlp_flush_demorgan`; `customer_claim_ready=false` | [`cv32e40p_prefetch_hwlp_plus_next_cnt_arith_accepted.json`](receipts/cv32e40p/accepted/cv32e40p_prefetch_hwlp_plus_next_cnt_arith_accepted.json) |
 
-In short: Athanor currently has six accepted optimization artifacts: five Ibex
-artifacts and one scope-typed CV32E40P ALU parent-context artifact. The current
+In short: Athanor currently has eight accepted optimization artifacts: five Ibex
+artifacts and three scope-typed CV32E40P parent-context artifacts. The current
 ATH-2698 top-level headline candidate is the PR #31 row: a modest but real
 `ibex_top` area improvement with timing, activity, and equivalence receipts.
-The larger Ibex improvements are module-scoped, and the CV32E40P row is
-parent-context scoped; neither should be read as broader than its receipt.
+The larger Ibex improvements are module-scoped, and the CV32E40P rows are
+parent-context scoped; none should be read as broader than its receipt.
 
 Do not claim five whole-core Ibex optimizations, an aggregate whole-core Ibex
 percentage, full-core CV32E40P impact, or customer-ready CV32E40P impact until
@@ -142,7 +145,7 @@ candidate** is an early lead that has not yet passed the full evidence path.
 | Core | Current state | Best current lead | Next honest gate |
 | --- | --- | --- | --- |
 | Ibex | Active public design with accepted receipts | Additional candidates are checked only when they have fresh evidence to add or reject | Either add a new accepted result with evidence, or record that a checked candidate did not pass |
-| CV32E40P | Active exploration with one accepted ALU parent-context optimization | The ALU combined three-predicate packet is accepted at default ALU parent-context scope; additional prefetch and compressed-decoder candidates remain under scope-typed promotion review | Promote additional candidates only at their measured scope, and keep full-core/customer wording behind the ATH-2899/ATH-2901 gates |
+| CV32E40P | Active exploration with three accepted parent-context optimizations | The ALU combined three-predicate packet and two prefetch-controller packets are accepted at their measured parent-context scopes; compressed-decoder candidates remain under scope-typed promotion review | Promote additional candidates only at their measured scope, carry non-additive relationships, and keep full-core/customer wording behind the ATH-2899/ATH-2901 gates |
 | PicoRV32 | Selected-flow baseline and residual replay exist | Replay found two residual rows; both were rejected cheaply (`0 == mem_wstrb` was formal/assertion-only, and `pcpi_rs1 - pcpi_rs2` was area neutral) | Treat as evidence that this search path did not transfer unless a new search method appears |
 | SERV | Selected-flow baseline exists | Detector replay found zero candidates ready for deeper evaluation | Treat as evidence that this search path did not transfer |
 | ultraembedded/riscv | Selected-flow baseline exists | Source-only constant-prop leads disappeared after selected-flow residual replay | Treat as evidence that this search path did not transfer |
