@@ -1,0 +1,88 @@
+{
+  "activity": {
+    "gate_toggles": 311729,
+    "gold_toggles": 311729,
+    "status": "flat",
+    "toggle_delta_pct": 0
+  },
+  "artifact": "ibex_top / no_bp_prefetch_direct",
+  "authorship": "Dexter agent, curated for ATH-2698 on 2026-07-10",
+  "classification": "five_point_positive",
+  "claim_scope": "top_level_ibex_top",
+  "claim_taxonomy": {
+    "accepted_optimization": "claimed",
+    "customer_claim_ready": false,
+    "scope": "top_level",
+    "scope_subject": "ibex_top",
+    "whole_core": "claimed_for_ibex_top_only"
+  },
+  "core": "ibex",
+  "display_status": "accepted whole-core result",
+  "evidence": {
+    "source_receipt": "https://github.com/athanor-ai/ibex-athanor/blob/ea0e5bc50e2322369a5cee166161acadbda417f0/athanor_artifacts/if_stage_no_bp_prefetch_direct/top_level_first/top_level_first_receipt.json",
+    "source_receipt_sha256": "bbebaef1dc7edf8831129f6896a8a68755192a01471ef72bf29b690de2a02a2f",
+    "verification_command": "python3 athanor/verify_public_receipts.py",
+    "verification_result": "verified 4 public manifests against yosys_0_66_181_oss_cad_suite_2026_06_30; 2 convention toggle receipt(s) checked"
+  },
+  "formal_equivalence": {
+    "proven_cells": 1956,
+    "status": "proved",
+    "unproven_cells": 0
+  },
+  "metrics": {
+    "area": {
+      "baseline": 108441.504,
+      "delta": -67.56480000000738,
+      "delta_percent": -0.06230529595016256,
+      "gate": 108373.9392,
+      "status": "improved"
+    },
+    "timing_wns_delta_ns": {
+      "in2out": {
+        "baseline": -201.3074,
+        "delta": 0.1761,
+        "gate": -201.1313,
+        "status": "improved"
+      },
+      "in2reg": {
+        "baseline": -250.2307,
+        "delta": 0.3407,
+        "gate": -249.89,
+        "status": "improved"
+      },
+      "overall": {
+        "baseline": -486.5999,
+        "delta": 13.7942,
+        "gate": -472.8057,
+        "status": "improved"
+      },
+      "reg2out": {
+        "baseline": -437.8436,
+        "delta": 13.7924,
+        "gate": -424.0512,
+        "status": "improved"
+      },
+      "reg2reg": {
+        "baseline": -486.5999,
+        "delta": 13.7942,
+        "gate": -472.8057,
+        "status": "improved"
+      }
+    }
+  },
+  "not_claimed": [
+    "autonomous-discovery result",
+    "customer_claim_ready",
+    "aggregate Ibex whole-core percentage",
+    "five whole-core Ibex optimizations",
+    "non-Ibex RISC-V impact"
+  ],
+  "schema": "athanor_riscv_accepted_artifact_receipt_v1",
+  "scope": "whole_core_ibex_top",
+  "status": "accepted_whole_core_result",
+  "summary": "PR #31 is the current ATH-2698 Ibex top-level headline candidate: a modest but real ibex_top area improvement with all recorded timing groups improved, flat activity, and Yosys equivalence 1956/1956. It is not an autonomous-discovery or customer-ready claim.",
+  "toolchain": {
+    "flow": "yosys66",
+    "oss_cad_suite": "oss-cad-suite-20260630"
+  }
+}
