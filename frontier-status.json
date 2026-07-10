@@ -1,10 +1,10 @@
 {
   "schema": "athanor_riscv_frontier_status_v1",
-  "updated_utc": "2026-07-10T22:47:00Z",
+  "updated_utc": "2026-07-10T22:57:00Z",
   "claim_policy": {
     "method": "forward-deployed agents plus Kairos receipts",
-    "public_impact_today": "Five accepted Ibex artifacts plus three scope-typed accepted CV32E40P parent-context optimizations; no full-core or customer-ready CV32E40P claim.",
-    "public_summary": "Eight accepted optimization artifacts: five Ibex artifacts and three CV32E40P parent-context accepted optimizations.",
+    "public_impact_today": "Five accepted Ibex artifacts plus five scope-typed accepted CV32E40P parent-context optimizations; no full-core or customer-ready CV32E40P claim.",
+    "public_summary": "Ten accepted optimization artifacts: five Ibex artifacts and five CV32E40P parent-context accepted optimizations.",
     "status_definitions": {
       "accepted_whole_core_result": "Accepted whole-core result: an optimization that stayed beneficial after integration into the whole processor and passed the recorded area, timing, activity, formal-equivalence, and replay checks.",
       "accepted_module_artifact": "Accepted module-level result: an optimization with evidence for one named RTL module; it is not a whole-core processor claim.",
@@ -178,6 +178,54 @@
         "additive combination with prefetch_hwlp_flush_demorgan"
       ],
       "evidence": "receipts/cv32e40p/accepted/cv32e40p_prefetch_hwlp_plus_next_cnt_arith_accepted.json"
+    },
+    {
+      "core": "cv32e40p",
+      "artifact": "cv32e40p_compressed_decoder / compressed_decoder_l71_addi4spn_zero_reduce",
+      "status": "accepted_scope_typed_optimization",
+      "display_status": "accepted scope-typed optimization",
+      "scope": "default_if_stage_parent_context",
+      "summary": "Default IF-stage parent context area 18228.732800 -> 18207.462400 (-0.116686%); all five IF-stage timing groups improve; activity flat 52962 -> 52962; source-local predicate SAT plus full compressed-decoder output SAT close with biting negatives; non-additive with compressed_decoder_l244_addi16sp_lui_zero_reduce; customer_claim_ready=false.",
+      "claim_taxonomy": {
+        "accepted_optimization": "claimed",
+        "customer_claim_ready": false,
+        "scope": "default_if_stage_parent_context",
+        "scope_subject": "cv32e40p_if_stage",
+        "whole_core": "not_claimed",
+        "customer_impact": "not_claimed"
+      },
+      "not_claimed": [
+        "whole-core CV32E40P result",
+        "customer_claim_ready",
+        "customer impact claim",
+        "full-core power claim",
+        "additive combination with compressed_decoder_l244_addi16sp_lui_zero_reduce"
+      ],
+      "evidence": "receipts/cv32e40p/accepted/cv32e40p_compressed_decoder_l71_addi4spn_zero_reduce_accepted.json"
+    },
+    {
+      "core": "cv32e40p",
+      "artifact": "cv32e40p_compressed_decoder / compressed_decoder_l244_addi16sp_lui_zero_reduce",
+      "status": "accepted_scope_typed_optimization",
+      "display_status": "accepted scope-typed optimization",
+      "scope": "default_if_stage_parent_context",
+      "summary": "Default IF-stage parent context area 18228.732800 -> 18194.950400 (-0.185325%); all five IF-stage timing groups improve; activity flat 55386 -> 55386; source-local predicate SAT plus full compressed-decoder output SAT close with biting negatives; non-additive with compressed_decoder_l71_addi4spn_zero_reduce; customer_claim_ready=false.",
+      "claim_taxonomy": {
+        "accepted_optimization": "claimed",
+        "customer_claim_ready": false,
+        "scope": "default_if_stage_parent_context",
+        "scope_subject": "cv32e40p_if_stage",
+        "whole_core": "not_claimed",
+        "customer_impact": "not_claimed"
+      },
+      "not_claimed": [
+        "whole-core CV32E40P result",
+        "customer_claim_ready",
+        "customer impact claim",
+        "full-core power claim",
+        "additive combination with compressed_decoder_l71_addi4spn_zero_reduce"
+      ],
+      "evidence": "receipts/cv32e40p/accepted/cv32e40p_compressed_decoder_l244_addi16sp_lui_zero_reduce_accepted.json"
     }
   ],
   "scouted_cores": [
@@ -192,13 +240,15 @@
       "core": "cv32e40p",
       "repo": "https://github.com/athanor-ai/cv32e40p-athanor",
       "status": "active_exploration_with_scope_typed_accepted_optimizations",
-      "display_status": "active exploration with three accepted parent-context optimizations",
-      "current_lead": "Accepted CV32E40P rows now cover cv32e40p_alu / addsub_divvalid_adderneg_prefixes at default ALU parent-context scope plus two prefetch-controller packets at their measured prefetch-buffer or IF-stage parent-context scopes. Public tradeoff rows still record candidates that improved one axis but failed activity, timing, or parent/reusable-scope timing.",
+      "display_status": "active exploration with five accepted parent-context optimizations",
+      "current_lead": "Accepted CV32E40P rows now cover cv32e40p_alu / addsub_divvalid_adderneg_prefixes at default ALU parent-context scope, two prefetch-controller packets at their measured prefetch-buffer or IF-stage parent-context scopes, and two compressed-decoder packets at default IF-stage parent-context scope. Public tradeoff rows still record candidates that improved one axis but failed activity, timing, or parent/reusable-scope timing.",
       "known_receipt": "receipts/cv32e40p/accepted/cv32e40p_alu_addsub_divvalid_adderneg_prefixes_accepted.json",
       "known_receipts": [
         "receipts/cv32e40p/accepted/cv32e40p_alu_addsub_divvalid_adderneg_prefixes_accepted.json",
         "receipts/cv32e40p/accepted/cv32e40p_prefetch_hwlp_flush_demorgan_accepted.json",
         "receipts/cv32e40p/accepted/cv32e40p_prefetch_hwlp_plus_next_cnt_arith_accepted.json",
+        "receipts/cv32e40p/accepted/cv32e40p_compressed_decoder_l71_addi4spn_zero_reduce_accepted.json",
+        "receipts/cv32e40p/accepted/cv32e40p_compressed_decoder_l244_addi16sp_lui_zero_reduce_accepted.json",
         "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json",
         "receipts/cv32e40p/rejections/cv32e40p_load_store_unit_rotated_payload_tradeoff.json",
         "receipts/cv32e40p/rejections/cv32e40p_load_store_unit_data_sign_ext_tradeoff.json",
