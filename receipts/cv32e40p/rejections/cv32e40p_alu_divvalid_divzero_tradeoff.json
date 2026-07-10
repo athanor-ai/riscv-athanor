@@ -1,0 +1,103 @@
+{
+  "activity": {
+    "status": "not_run",
+    "reason": "The ALU selected-flow timing bar failed on input-path timing, so no activity or toggle packet was spent."
+  },
+  "authorship": "Dexter agent, 2026-07-10",
+  "candidate": "cv32e40p_alu / divvalid_plus_div_zero_reduce",
+  "classification": "alu_area_positive_input_timing_negative_no_promotion",
+  "core": "cv32e40p",
+  "display_status": "rejected tradeoff",
+  "equivalence": {
+    "status": "not_run",
+    "reason": "The ALU selected-flow timing bar failed, so no equivalence packet was spent for this combined candidate."
+  },
+  "fork_head": "6033d2b1be3295ec774d17ac4cf226faacfdeb08",
+  "not_claimed": [
+    "accepted CV32E40P optimization",
+    "whole-core CV32E40P result",
+    "formal equivalence proof for this combined candidate",
+    "activity or power improvement",
+    "cold replay",
+    "customer impact claim"
+  ],
+  "relationship_metadata": {
+    "non_additive_with": [
+      "cv32e40p_alu / addsub_divvalid_adderneg_prefixes",
+      "cv32e40p_alu / shift_divvalid_adderneg_prefixes",
+      "cv32e40p_alu / divrem_prefix_valid"
+    ],
+    "table_guidance": "This rejected tradeoff touches the same ALU predicate neighborhood as prior replay-grade ALU packets and includes a div_valid rewrite. Do not add its area or timing deltas to those packet rows; treat it as a separate failed combined selected-flow experiment."
+  },
+  "replay": {
+    "status": "not_run",
+    "reason": "Replay is reserved for candidates that pass the selected-flow area/timing bar."
+  },
+  "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+  "scope": "selected_flow_context_cv32e40p_alu",
+  "selected_flow": {
+    "description": "Scratch selected-flow run for a combined ALU predicate candidate.",
+    "area": {
+      "baseline": 29440.736,
+      "delta_pct": -1.58521,
+      "gate": 28974.0384
+    },
+    "baseline_bundle_sha256": "11f8086c559c265e610f0e919650da077e45b2d950334d78cfb143e93f4987fa",
+    "baseline_manifest_sha256": "0a1d5ad011e54adceda77eb80c6afe82ea198e9bdcfe8094550b08cdb31aa670",
+    "gate_bundle_sha256": "975e5797bff2a91d78a3742d83ad8c7a806d081606c623bfedbc92033e5d1e56",
+    "gate_manifest_sha256": "498afaf3199b0896c6b07f1e34e9c72fabe8947dce7419f599879400556880c5",
+    "source_sha256": "a187cca730d7230572038878d0552f8ab8497fbab4e551050892ee4447611e7f",
+    "timing_slack_ns": {
+      "in2out": {
+        "baseline": -16.5915,
+        "delta": -4.4457,
+        "gate": -21.0372,
+        "status": "regressed"
+      },
+      "in2reg": {
+        "baseline": -13.9355,
+        "delta": -4.7387,
+        "gate": -18.6742,
+        "status": "regressed"
+      },
+      "overall": {
+        "baseline": -16.5915,
+        "delta": -4.4457,
+        "gate": -21.0372,
+        "status": "regressed"
+      },
+      "reg2out": {
+        "baseline": -2.0419,
+        "delta": 0.0669,
+        "gate": -1.975,
+        "status": "improved"
+      },
+      "reg2reg": {
+        "baseline": -5.4141,
+        "delta": 0.3563,
+        "gate": -5.0578,
+        "status": "improved"
+      }
+    },
+    "top": "cv32e40p_alu"
+  },
+  "source_delta": {
+    "changes": [
+      {
+        "new": "assign div_valid = enable_i & (operator_i[6:2] == 5'b01100);",
+        "old": "assign div_valid = enable_i & ((operator_i == ALU_DIV) || (operator_i == ALU_DIVU) || (operator_i == ALU_REM) || (operator_i == ALU_REMU));",
+        "summary": "Replaces the DIV/REM opcode equality chain with the matching operator prefix predicate."
+      },
+      {
+        "new": ".OpBIsZero_SI((~|cnt_result)),",
+        "old": ".OpBIsZero_SI((cnt_result == 0)),",
+        "summary": "Replaces a zero comparison on the divider count result with a reduction-NOR form."
+      }
+    ],
+    "variant": "divvalid_plus_div_zero_reduce"
+  },
+  "status": "rejected_tradeoff",
+  "summary": "Rejected because the combined ALU predicate candidate reduced selected-flow area but regressed the in2out, in2reg, and overall timing groups.",
+  "what_changed": "The ALU div_valid opcode equality chain and divider zero comparison were rewritten as prefix/reduction predicates in the scratch candidate.",
+  "why_rejected": "The selected-flow ALU area improved 29440.736000 -> 28974.038400 (-1.585210%), but input-path timing regressed hard: in2out -16.5915 -> -21.0372, in2reg -13.9355 -> -18.6742, and overall -16.5915 -> -21.0372. The candidate stopped before equivalence, activity, or replay spend."
+}
