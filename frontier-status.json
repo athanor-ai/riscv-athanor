@@ -1,6 +1,6 @@
 {
   "schema": "athanor_riscv_frontier_status_v1",
-  "updated_utc": "2026-07-10T09:47:08Z",
+  "updated_utc": "2026-07-10T10:39:13Z",
   "claim_policy": {
     "method": "forward-deployed agents plus Kairos receipts",
     "public_impact_today": "Ibex only",
@@ -100,7 +100,7 @@
       "repo": "https://github.com/athanor-ai/cv32e40p-athanor",
       "status": "active_exploration_no_accepted_optimization",
       "display_status": "active exploration; no accepted optimization yet",
-      "current_lead": "No accepted optimization yet. Current public tradeoff rows include interrupt-controller, load-store-unit, aligner, FIFO, and multiplier candidates that improved one axis but failed activity or parent/reusable-scope timing.",
+      "current_lead": "No accepted optimization yet. Current public tradeoff rows include interrupt-controller, load-store-unit, aligner, FIFO, multiplier, and CSR candidates that improved one axis but failed activity or parent/reusable-scope timing.",
       "known_receipt": "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json",
       "known_receipts": [
         "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json",
@@ -108,7 +108,8 @@
         "receipts/cv32e40p/rejections/cv32e40p_load_store_unit_data_sign_ext_tradeoff.json",
         "receipts/cv32e40p/rejections/cv32e40p_aligner_eq11_if_stage_tradeoff.json",
         "receipts/cv32e40p/rejections/cv32e40p_fifo_push_pop_ok_factor_tradeoff.json",
-        "receipts/cv32e40p/rejections/cv32e40p_mult_mulh_bits_tradeoff.json"
+        "receipts/cv32e40p/rejections/cv32e40p_mult_mulh_bits_tradeoff.json",
+        "receipts/cv32e40p/rejections/cv32e40p_cs_registers_mhpmevent_impl_range_tradeoff.json"
       ],
       "boundary": "Exploratory evidence only; no accepted or full-core CV32E40P optimization, no full-core power claim, no cold replay, and no headline/customer impact claim.",
       "next_gate": "Find a candidate that passes selected-flow area/timing, formal equivalence, activity/toggle checks, and replay without a required-axis regression."
@@ -210,6 +211,16 @@
       "summary": "The MULH slice selected-flow run improved area 13207.667200 -> 13172.633600 (-0.265252%) and all five timing groups, and the EX-stage multiplier parent context reduced area 77151.494400 -> 76960.060800 (-0.248127%). Rejected because parent in2reg, reg2out, and reg2reg timing regressed; equivalence, activity, and replay were not run after the timing failure.",
       "rejection_reason": "parent_context_timing_regression",
       "evidence": "receipts/cv32e40p/rejections/cv32e40p_mult_mulh_bits_tradeoff.json"
+    },
+    {
+      "core": "cv32e40p",
+      "candidate": "cv32e40p_cs_registers / mhpmevent_impl_range",
+      "status": "rejected_tradeoff",
+      "display_status": "rejected tradeoff",
+      "scope": "module_positive_with_selected_flow_parent_context_rejection",
+      "summary": "The CSR module selected-flow run improved area 24835.068800 -> 24664.905600 (-0.685160%), the module activity proxy improved 216581 -> 211003, and module Yosys equivalence closed with 886/886 cells. Rejected because the selected EX-stage CSR parent context increased area 25329.292800 -> 25523.228800 (+0.765659%) and regressed reg2reg timing -1.9486 -> -2.0358.",
+      "rejection_reason": "parent_context_area_and_reg2reg_timing_regression",
+      "evidence": "receipts/cv32e40p/rejections/cv32e40p_cs_registers_mhpmevent_impl_range_tradeoff.json"
     }
   ]
 }

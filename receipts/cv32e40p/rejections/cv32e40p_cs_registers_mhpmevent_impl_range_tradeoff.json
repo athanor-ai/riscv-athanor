@@ -1,0 +1,135 @@
+{
+  "activity": {
+    "boundary_equality_every_cycle": true,
+    "common_paths": 689,
+    "gate_toggles": 211003,
+    "gold_toggles": 216581,
+    "scope": "module_rtl_activity_proxy_not_parent_power_claim",
+    "status": "neutral_or_better",
+    "stimulus": "csr_mhpmevent_implemented_and_unimplemented_writes_reads",
+    "toggle_delta_pct_common_paths": -2.57548,
+    "trace_sha256": "00f43d45bfdfc64d1976f126f40fd806a39073816c7ff40c0c311f85b9121461"
+  },
+  "authorship": "Dexter agent, 2026-07-10",
+  "candidate": "cv32e40p_cs_registers / mhpmevent_impl_range",
+  "classification": "module_positive_parent_context_negative_no_package",
+  "core": "cv32e40p",
+  "display_status": "rejected tradeoff",
+  "equivalence": {
+    "proven_cells": 886,
+    "status": "module_raw_yosys_equivalence_positive",
+    "unproven_cells": 0
+  },
+  "fork_head": "6033d2b1be3295ec774d17ac4cf226faacfdeb08",
+  "not_claimed": [
+    "accepted CV32E40P optimization",
+    "whole-core CV32E40P result",
+    "parent-context formal equivalence proof",
+    "parent-context activity or power improvement",
+    "cold replay",
+    "customer impact claim"
+  ],
+  "replay": {
+    "status": "not_run",
+    "reason": "The EX-stage parent selected-flow bar failed on area and reg2reg timing, so no replay package was spent."
+  },
+  "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+  "scope": "module_positive_with_selected_flow_parent_context_rejection",
+  "selected_flow": {
+    "description": "Scratch selected-flow runs for the CSR module and an EX-stage CSR parent context.",
+    "module": {
+      "area": {
+        "baseline": 24835.0688,
+        "delta_pct": -0.68516,
+        "gate": 24664.9056
+      },
+      "baseline_manifest_sha256": "1b38cd846ea378a50b178183036930a2a04cf22289736e796567d0a30ed66fee",
+      "gate_manifest_sha256": "8b4b8a137b8d4e5f64ffb2af5b18fe268d446180eb58461203e94b9888351590",
+      "timing_slack_ns": {
+        "in2out": {
+          "baseline": -0.6088,
+          "delta": -0.1072,
+          "gate": -0.716,
+          "status": "regressed"
+        },
+        "in2reg": {
+          "baseline": -1.9335,
+          "delta": 0.0443,
+          "gate": -1.8892,
+          "status": "improved"
+        },
+        "overall": {
+          "baseline": -1.9335,
+          "delta": 0.0178,
+          "gate": -1.9157,
+          "status": "improved"
+        },
+        "reg2out": {
+          "baseline": 2.8651,
+          "delta": 0.0011,
+          "gate": 2.8662,
+          "status": "improved"
+        },
+        "reg2reg": {
+          "baseline": -1.9324,
+          "delta": 0.0167,
+          "gate": -1.9157,
+          "status": "improved"
+        }
+      },
+      "top": "cv32e40p_cs_registers"
+    },
+    "parent": {
+      "area": {
+        "baseline": 25329.2928,
+        "delta_pct": 0.765659,
+        "gate": 25523.2288
+      },
+      "baseline_bundle_sha256": "b0a5097b5983968b7e7316c30f98b10c3f3dc324ed1ca20149be921255a824f6",
+      "baseline_manifest_sha256": "729d025b45ab74a369c78c650160e679ea452b9f4a18b78123d25442f3a41bef",
+      "gate_bundle_sha256": "334226be09803baab8b862c570ec75d19fb41b57e7bc9fe77f521ee1573d4c0d",
+      "gate_manifest_sha256": "e13682ecca3cba433cf4b87361954e3225dfa7f1d8de1667523699050ffb2942",
+      "timing_slack_ns": {
+        "in2out": {
+          "baseline": -1.8327,
+          "delta": 0.0558,
+          "gate": -1.7769,
+          "status": "improved"
+        },
+        "in2reg": {
+          "baseline": -2.4357,
+          "delta": 0.3606,
+          "gate": -2.0751,
+          "status": "improved"
+        },
+        "overall": {
+          "baseline": -2.4357,
+          "delta": 0.3606,
+          "gate": -2.0751,
+          "status": "improved"
+        },
+        "reg2out": {
+          "baseline": 2.4735,
+          "delta": 0.0564,
+          "gate": 2.5299,
+          "status": "improved"
+        },
+        "reg2reg": {
+          "baseline": -1.9486,
+          "delta": -0.0872,
+          "gate": -2.0358,
+          "status": "regressed"
+        }
+      },
+      "top": "cv32e40p_csr_ex_context"
+    }
+  },
+  "source_delta": {
+    "summary": "The CSR mhpmevent implementation decode was rewritten as a range-style predicate in the scratch candidate.",
+    "variant": "mhpmevent_impl_range"
+  },
+  "status": "rejected_tradeoff",
+  "summary": "Rejected because the CSR module showed area, activity, and module-equivalence positives, but the selected EX-stage CSR parent context increased area and regressed reg2reg timing.",
+  "what_changed": "The mhpmevent implementation predicate in cv32e40p_cs_registers was changed to a range-style decode.",
+  "why_rejected": "The module-local positives did not clear the consuming-parent selected-flow rung: the EX-stage CSR context area increased 25329.292800 -> 25523.228800 (+0.765659%) and reg2reg slack regressed -1.9486 -> -2.0358."
+}
