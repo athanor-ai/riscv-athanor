@@ -65,6 +65,11 @@ optimization claim.
 A **detector** is an automated search rule that looks for a possible
 optimization. **Preflight** means setup work before a usable baseline exists.
 
+Timing group names describe the kind of path being checked: **in2out** is an
+input-to-output combinational path, **in2reg** is input-to-register, **reg2out**
+is register-to-output, and **reg2reg** is register-to-register. A lower slack
+number is worse.
+
 A **rejected tradeoff** is a candidate that improved at least one checked axis,
 such as area or timing, but failed another required axis. These rows are not
 optimization claims. They are included so readers can see what was tried, what
@@ -99,6 +104,7 @@ optimization artifacts.
 | Core | Candidate | Why It Was Rejected | Evidence |
 | --- | --- | --- | --- |
 | CV32E40P | `cv32e40p_int_controller / reachable_irq_loop_encoder` | In the real controller plus interrupt-controller context, area improved `3365.728000 -> 3299.414400` (`-1.9702%`) and all selected-flow timing groups improved; equivalence proved for both checked `PULP_SECURE` settings and a bad-mutant control failed as expected. It was rejected because exercised toggle activity increased `338551 -> 359771` (`+6.267889%`), which is a power-proxy regression. | [`cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json`](receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json) |
+| CV32E40P | `cv32e40p_load_store_unit / rotated_payload` | In the LSU EX-stage selected-flow parent context, area improved `5950.707200 -> 5512.787200` (`-7.359125%`) and the registered-output timing groups improved. It was rejected because required input timing regressed: in2out `-0.8415 -> -1.3570`, in2reg `1.4147 -> 1.0122`, and overall `-0.8415 -> -1.3570`. The candidate stopped before equivalence, activity, or replay spend. | [`cv32e40p_load_store_unit_rotated_payload_tradeoff.json`](receipts/cv32e40p/rejections/cv32e40p_load_store_unit_rotated_payload_tradeoff.json) |
 
 ## Exploratory Work
 

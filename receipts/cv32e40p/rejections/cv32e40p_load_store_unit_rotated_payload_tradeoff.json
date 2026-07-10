@@ -1,0 +1,82 @@
+{
+  "activity": {
+    "status": "not_run",
+    "reason": "The selected-flow parent timing bar failed, so no activity or toggle packet was spent."
+  },
+  "authorship": "Dexter agent, 2026-07-09",
+  "candidate": "cv32e40p_load_store_unit / rotated_payload",
+  "classification": "selected_flow_area_positive_timing_regression_no_promotion",
+  "core": "cv32e40p",
+  "display_status": "rejected tradeoff",
+  "equivalence": {
+    "status": "not_run",
+    "reason": "The selected-flow parent timing bar failed, so no equivalence packet was spent."
+  },
+  "fork_head": "6033d2b1be3295ec774d17ac4cf226faacfdeb08",
+  "not_claimed": [
+    "accepted CV32E40P optimization",
+    "whole-core CV32E40P result",
+    "formal equivalence proof",
+    "activity or power improvement",
+    "cold replay",
+    "customer impact claim"
+  ],
+  "replay": {
+    "status": "not_run",
+    "reason": "Replay is reserved for candidates that pass the parent selected-flow bar."
+  },
+  "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+  "scope": "selected_flow_parent_context_cv32e40p_lsu_ex_context",
+  "selected_flow": {
+    "area": {
+      "baseline": 5950.7072,
+      "delta_pct": -7.359125,
+      "gate": 5512.7872
+    },
+    "baseline_bundle_sha256": "51e778f93986e6f187b5dffdea7c9c6819e3adfa46b875f72c3dbae6256be779",
+    "baseline_lsu_source_sha256": "857962513fc5bd3eb3d6b28c55fdfb15ef53f8ce8a59173a7d583efb8caee66f",
+    "baseline_sha256s_sha256": "4c0acae26bf815c0c6b5ea338a0e7d80eae0587d08128f9bac9ed30a6fa1f2c1",
+    "description": "Scratch cv32e40p_lsu_ex_context selected-flow wrapper containing the load-store unit in an EX-stage parent context.",
+    "gate_bundle_sha256": "afbe419aab0f52bef77b898d29a263da4a390113b35126539fbcad4ac4a9a6a6",
+    "gate_lsu_source_sha256": "9003877810370106c6316c42515705fd5c9692d25422e644ec15852cd856ccf9",
+    "gate_sha256s_sha256": "9fe457eedb903255114c7a7d59513985876de0d171d53111485af0805ca0d0f5",
+    "timing_slack_ns": {
+      "in2out": {
+        "baseline": -0.8415,
+        "delta": -0.5155,
+        "gate": -1.357,
+        "status": "regressed"
+      },
+      "in2reg": {
+        "baseline": 1.4147,
+        "delta": -0.4025,
+        "gate": 1.0122,
+        "status": "regressed"
+      },
+      "overall": {
+        "baseline": -0.8415,
+        "delta": -0.5155,
+        "gate": -1.357,
+        "status": "regressed"
+      },
+      "reg2out": {
+        "baseline": 1.4104,
+        "delta": 0.1996,
+        "gate": 1.61,
+        "status": "improved"
+      },
+      "reg2reg": {
+        "baseline": 1.6216,
+        "delta": 0.1126,
+        "gate": 1.7342,
+        "status": "improved"
+      }
+    },
+    "top": "cv32e40p_lsu_ex_context",
+    "wrapper_sha256": "e6ca08d20a729770f4aafab1e50c8d0cf3fe6fc93c494273dd6da59e0181361d"
+  },
+  "status": "rejected_tradeoff",
+  "summary": "Rejected because the LSU EX-stage parent selected-flow run reduced area but worsened required input timing groups.",
+  "what_changed": "The load-store unit read-data assembly was rewritten to rotate the response and held word once, then derive word, half-word, and byte extension from that shared rotated value.",
+  "why_rejected": "Area improved, but in2out, in2reg, and overall timing slack all regressed in the parent selected-flow context. The candidate stopped before equivalence, activity, or replay spend."
+}

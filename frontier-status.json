@@ -1,6 +1,6 @@
 {
   "schema": "athanor_riscv_frontier_status_v1",
-  "updated_utc": "2026-07-09T22:48:00Z",
+  "updated_utc": "2026-07-10T05:20:00Z",
   "claim_policy": {
     "method": "forward-deployed agents plus Kairos receipts",
     "public_impact_today": "Ibex only",
@@ -27,6 +27,7 @@
       "oss_fv": "Hosted open-source formal-verification workflow used by the Ibex evidence runs.",
       "cold_replay": "Receipt rerun from a fresh checkout or fresh environment instead of warm local state.",
       "selected_flow": "Target-specific synthesis/timing flow used before spending time on deeper proof or activity checks.",
+      "timing_groups": "Path classes used in selected-flow timing reports: in2out is input-to-output, in2reg is input-to-register, reg2out is register-to-output, and reg2reg is register-to-register. Lower slack is worse.",
       "generic_yosys_no_abc": "Early synthesis screens that can identify leads but are not enough by themselves for an accepted optimization claim.",
       "detector": "Automated search rule that looks for a possible optimization.",
       "preflight": "Setup work before a usable baseline exists.",
@@ -99,8 +100,12 @@
       "repo": "https://github.com/athanor-ai/cv32e40p-athanor",
       "status": "active_exploration_no_accepted_optimization",
       "display_status": "active exploration; no accepted optimization yet",
-      "current_lead": "No accepted optimization yet. The strongest current tradeoff row is cv32e40p_int_controller / reachable_irq_loop_encoder: area, timing, and equivalence were favorable in the consuming parent context, but toggle activity regressed, so it was rejected.",
+      "current_lead": "No accepted optimization yet. Current public tradeoff rows include cv32e40p_int_controller / reachable_irq_loop_encoder, rejected after toggle activity regressed, and cv32e40p_load_store_unit / rotated_payload, rejected after selected-flow input timing regressed despite a large area reduction.",
       "known_receipt": "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json",
+      "known_receipts": [
+        "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json",
+        "receipts/cv32e40p/rejections/cv32e40p_load_store_unit_rotated_payload_tradeoff.json"
+      ],
       "boundary": "Exploratory evidence only; no accepted or full-core CV32E40P optimization, no full-core power claim, no cold replay, and no headline/customer impact claim.",
       "next_gate": "Find a candidate that passes selected-flow area/timing, formal equivalence, activity/toggle checks, and replay without a required-axis regression."
     },
@@ -151,6 +156,16 @@
       "summary": "Area improved 3365.728000 -> 3299.414400 (-1.9702%) and all selected-flow timing groups improved in the consuming parent context; Yosys equivalence proved for PULP_SECURE=0 and PULP_SECURE=1, and the negative control failed as expected. Rejected because exercised toggle activity increased 338551 -> 359771 (+6.267889%).",
       "rejection_reason": "activity_power_regression",
       "evidence": "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json"
+    },
+    {
+      "core": "cv32e40p",
+      "candidate": "cv32e40p_load_store_unit / rotated_payload",
+      "status": "rejected_tradeoff",
+      "display_status": "rejected tradeoff",
+      "scope": "selected_flow_parent_context_cv32e40p_lsu_ex_context",
+      "summary": "Area improved 5950.707200 -> 5512.787200 (-7.359125%) in the LSU EX-stage selected-flow parent context, and reg2out/reg2reg timing improved. Rejected because in2out, in2reg, and overall timing slack regressed; equivalence, activity, and replay were not run after the timing failure.",
+      "rejection_reason": "selected_flow_input_timing_regression",
+      "evidence": "receipts/cv32e40p/rejections/cv32e40p_load_store_unit_rotated_payload_tradeoff.json"
     }
   ]
 }
