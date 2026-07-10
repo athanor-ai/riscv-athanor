@@ -1,6 +1,6 @@
 {
   "schema": "athanor_riscv_frontier_status_v1",
-  "updated_utc": "2026-07-10T13:50:26Z",
+  "updated_utc": "2026-07-10T15:34:33Z",
   "claim_policy": {
     "method": "forward-deployed agents plus Kairos receipts",
     "public_impact_today": "Ibex only",
@@ -56,8 +56,22 @@
       "status": "accepted_whole_core_result",
       "display_status": "accepted whole-core result",
       "scope": "whole_core_ibex_top",
-      "summary": "PR #31 whole-core ibex_top area 108441.5040 -> 108373.9392; WNS deltas +13.7942/+13.7942/+13.7924/+0.3407/+0.1761ns; toggle flat 311729 -> 311729; Yosys equiv 1956/1956; hosted OSS-FV green; cold review passed.",
-      "evidence": "https://github.com/athanor-ai/ibex-athanor/blob/ea0e5bc50e2322369a5cee166161acadbda417f0/athanor_artifacts/if_stage_no_bp_prefetch_direct/top_level_first/top_level_first_receipt.json"
+      "summary": "PR #31 whole-core ibex_top area 108441.5040 -> 108373.9392 (-0.062305%); WNS deltas +13.7942/+13.7942/+13.7924/+0.3407/+0.1761ns; toggle flat 311729 -> 311729; Yosys equiv 1956/1956; hosted OSS-FV green; cold review passed; not autonomous discovery; customer_claim_ready=false.",
+      "claim_taxonomy": {
+        "accepted_optimization": "claimed",
+        "customer_claim_ready": false,
+        "scope": "top_level",
+        "scope_subject": "ibex_top",
+        "whole_core": "claimed_for_ibex_top_only"
+      },
+      "not_claimed": [
+        "autonomous-discovery result",
+        "customer_claim_ready",
+        "aggregate Ibex whole-core percentage",
+        "five whole-core Ibex optimizations",
+        "non-Ibex RISC-V impact"
+      ],
+      "evidence": "receipts/ibex/accepted/ibex_top_no_bp_prefetch_direct_top_level.json"
     },
     {
       "core": "ibex",
