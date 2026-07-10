@@ -1,0 +1,124 @@
+{
+  "activity": {
+    "status": "not_run",
+    "reason": "The IF-stage parent timing bar failed on one required timing group, so no activity or toggle packet was spent."
+  },
+  "authorship": "Dexter agent, 2026-07-10",
+  "candidate": "cv32e40p_aligner / held_misaligned32 + fetch_misaligned16 + branch_fetch_hi",
+  "classification": "module_area_timing_positive_if_stage_area_positive_input_timing_regression_no_promotion",
+  "core": "cv32e40p",
+  "display_status": "rejected tradeoff",
+  "equivalence": {
+    "status": "not_run",
+    "reason": "The IF-stage parent timing bar failed, so no equivalence packet was spent."
+  },
+  "fork_head": "6033d2b1be3295ec774d17ac4cf226faacfdeb08",
+  "not_claimed": [
+    "accepted CV32E40P optimization",
+    "whole-core CV32E40P result",
+    "formal equivalence proof",
+    "activity or power improvement",
+    "cold replay",
+    "customer impact claim"
+  ],
+  "replay": {
+    "status": "not_run",
+    "reason": "Replay is reserved for candidates that pass the parent selected-flow bar."
+  },
+  "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+  "scope": "selected_flow_parent_context_cv32e40p_if_stage",
+  "selected_flow": {
+    "description": "Scratch cv32e40p_if_stage selected-flow parent wrapper containing the aligner candidate.",
+    "module": {
+      "area": {
+        "baseline": 5338.8704,
+        "delta_pct": -2.765411,
+        "gate": 5191.2288
+      },
+      "baseline_bundle_sha256": "f4491df3e1c951861152b77813b8a05e02b0655ba4c908948bc24eda35a778c7",
+      "gate_bundle_sha256": "d29381e5b8119f47be541d6c6581b89b73962b3ee11498a71519e705e4db8394",
+      "gate_source_sha256": "8fb495ca12873862561fdbba514acdc657dafe9aecb1e99f2cbcae253f75f3ea",
+      "timing_slack_ns": {
+        "in2out": {
+          "baseline": 2.1746,
+          "delta": 0.5015,
+          "gate": 2.6761,
+          "status": "improved"
+        },
+        "in2reg": {
+          "baseline": 0.6655,
+          "delta": 0.7529,
+          "gate": 1.4184,
+          "status": "improved"
+        },
+        "overall": {
+          "baseline": 0.3763,
+          "delta": 0.601,
+          "gate": 0.9773,
+          "status": "improved"
+        },
+        "reg2out": {
+          "baseline": 1.6305,
+          "delta": 0.2623,
+          "gate": 1.8928,
+          "status": "improved"
+        },
+        "reg2reg": {
+          "baseline": 0.3763,
+          "delta": 0.601,
+          "gate": 0.9773,
+          "status": "improved"
+        }
+      },
+      "top": "cv32e40p_aligner"
+    },
+    "parent": {
+      "area": {
+        "baseline": 18228.7328,
+        "delta_pct": -0.137278,
+        "gate": 18203.7088
+      },
+      "baseline_bundle_sha256": "2840d83692ee690b08339bd20376f725021a2540714a99257d9fa89bfab0c493",
+      "baseline_sources_sha256": "02a301d11bb612396ac4d3c4b7bc226f6c1b6841d6a1c2f568bdcd017880585e",
+      "gate_bundle_sha256": "68e2676fadac1f63e80b1596a870685e471bf1d8d106992c6027067d8c5cca03",
+      "gate_sources_sha256": "ad2c905ed7b68920ef8530f4a6b9b749841a4922c4c4a860148a0e9abfbd4ef8",
+      "timing_slack_ns": {
+        "in2out": {
+          "baseline": 1.1039,
+          "delta": -0.1972,
+          "gate": 0.9067,
+          "status": "regressed"
+        },
+        "in2reg": {
+          "baseline": -1.876,
+          "delta": 2.0185,
+          "gate": 0.1425,
+          "status": "improved"
+        },
+        "overall": {
+          "baseline": -1.876,
+          "delta": 1.0473,
+          "gate": -0.8287,
+          "status": "improved"
+        },
+        "reg2out": {
+          "baseline": 0.9203,
+          "delta": 0.1318,
+          "gate": 1.0521,
+          "status": "improved"
+        },
+        "reg2reg": {
+          "baseline": -1.7646,
+          "delta": 0.9359,
+          "gate": -0.8287,
+          "status": "improved"
+        }
+      },
+      "top": "cv32e40p_if_stage"
+    }
+  },
+  "status": "rejected_tradeoff",
+  "summary": "Rejected because the aligner-local result improved area and timing and the IF-stage parent still reduced area, but the IF-stage in2out timing group regressed.",
+  "what_changed": "Three aligner equality checks were rewritten as reduction-style predicates for held-misaligned, fetch-misaligned, and branch-fetch cases.",
+  "why_rejected": "The parent IF-stage selected-flow run reduced area and improved four timing groups, but in2out slack regressed. The candidate stopped before equivalence, activity, or replay spend."
+}
