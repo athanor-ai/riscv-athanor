@@ -1,0 +1,130 @@
+{
+  "activity": {
+    "status": "not_run",
+    "reason": "The EX-stage parent timing bar failed on three required timing groups, so no activity or toggle packet was spent."
+  },
+  "authorship": "Dexter agent, 2026-07-10",
+  "candidate": "cv32e40p_mult / mulh_bits",
+  "classification": "module_area_timing_positive_ex_stage_area_positive_timing_negative_no_promotion",
+  "core": "cv32e40p",
+  "display_status": "rejected tradeoff",
+  "equivalence": {
+    "status": "not_run",
+    "reason": "The EX-stage parent timing bar failed, so no equivalence packet was spent."
+  },
+  "fork_head": "6033d2b1be3295ec774d17ac4cf226faacfdeb08",
+  "not_claimed": [
+    "accepted CV32E40P optimization",
+    "whole-core CV32E40P result",
+    "formal equivalence proof",
+    "activity or power improvement",
+    "cold replay",
+    "customer impact claim"
+  ],
+  "replay": {
+    "status": "not_run",
+    "reason": "Replay is reserved for candidates that pass the parent selected-flow timing bar."
+  },
+  "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+  "scope": "selected_flow_parent_context_cv32e40p_ex_stage_mult_context",
+  "selected_flow": {
+    "description": "Scratch selected-flow runs for the MULH slice wrapper and the EX-stage multiplier parent context.",
+    "module": {
+      "area": {
+        "baseline": 13207.6672,
+        "delta_pct": -0.265252,
+        "gate": 13172.6336
+      },
+      "baseline_bundle_sha256": "820139564facbfd46e708db0d9ad93d245375753a8ce729ccf846f30d7847a0c",
+      "baseline_manifest_sha256": "35d7c104c1e3c4302572ffa5693490b22c31eb350b36c3e88fb12f5421b43c15",
+      "gate_bundle_sha256": "c698bcd6c50798de2026723f62bb241c2f5df5820374717fdb33e674f386d20d",
+      "gate_manifest_sha256": "abbb67e5838b298907962d09abed57608b5e8c5b6c68f6fec0aafc8146328044",
+      "timing_slack_ns": {
+        "in2out": {
+          "baseline": -5.2488,
+          "delta": 0.7624,
+          "gate": -4.4864,
+          "status": "improved"
+        },
+        "in2reg": {
+          "baseline": -4.3563,
+          "delta": 0.7653,
+          "gate": -3.591,
+          "status": "improved"
+        },
+        "overall": {
+          "baseline": -6.5919,
+          "delta": 0.7623,
+          "gate": -5.8296,
+          "status": "improved"
+        },
+        "reg2out": {
+          "baseline": -6.5919,
+          "delta": 0.7623,
+          "gate": -5.8296,
+          "status": "improved"
+        },
+        "reg2reg": {
+          "baseline": -5.6995,
+          "delta": 0.7653,
+          "gate": -4.9342,
+          "status": "improved"
+        }
+      },
+      "top": "cv32e40p_mult_mulh_wrap"
+    },
+    "parent": {
+      "area": {
+        "baseline": 77151.4944,
+        "delta_pct": -0.248127,
+        "gate": 76960.0608
+      },
+      "baseline_bundle_sha256": "0ea4b70828b4d5f3fcdcef7906eafa6851d1d8c0d0c6417de7c17d777225bd18",
+      "baseline_manifest_sha256": "8fde817d39ef122c095381262e955898862c81929d5a17c005027f073f2d6d77",
+      "gate_bundle_sha256": "e93f034237558738786a355743dd30a8b7b45096932296abb1d1d9d45c498501",
+      "gate_manifest_sha256": "3477cbdb02ec865aef239bab214c82e3a29dc545beecfe2aeaeeca8de3388791",
+      "timing_slack_ns": {
+        "in2out": {
+          "baseline": -15.2064,
+          "delta": 0.184,
+          "gate": -15.0224,
+          "status": "improved"
+        },
+        "in2reg": {
+          "baseline": -5.7015,
+          "delta": -1.069,
+          "gate": -6.7705,
+          "status": "regressed"
+        },
+        "overall": {
+          "baseline": -15.2064,
+          "delta": 0.184,
+          "gate": -15.0224,
+          "status": "improved"
+        },
+        "reg2out": {
+          "baseline": -7.6692,
+          "delta": -1.1672,
+          "gate": -8.8364,
+          "status": "regressed"
+        },
+        "reg2reg": {
+          "baseline": -5.9449,
+          "delta": -1.1014,
+          "gate": -7.0463,
+          "status": "regressed"
+        }
+      },
+      "top": "cv32e40p_ex_stage_mult_context"
+    }
+  },
+  "source_delta": {
+    "new_predicate": "(operator_i[2] && operator_i[1] && !operator_i[0]) && enable_i",
+    "old_predicate": "(operator_i == MUL_H) && enable_i",
+    "summary": "The MUL_H opcode equality in the multiplier MULH path was rewritten as the equivalent low-bit predicate used by the scratch candidate."
+  },
+  "status": "rejected_tradeoff",
+  "summary": "Rejected because the MULH slice selected-flow run improved area and timing, and the EX-stage multiplier parent context still reduced area, but the parent in2reg, reg2out, and reg2reg timing groups regressed.",
+  "what_changed": "The MUL_H opcode equality in cv32e40p_mult was replaced with a low-bit predicate for the MULH operator family.",
+  "why_rejected": "The parent EX-stage multiplier context reduced area but regressed three required timing groups, so the candidate stopped before equivalence, activity, or replay spend."
+}

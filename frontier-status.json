@@ -1,6 +1,6 @@
 {
   "schema": "athanor_riscv_frontier_status_v1",
-  "updated_utc": "2026-07-10T09:17:28Z",
+  "updated_utc": "2026-07-10T09:47:08Z",
   "claim_policy": {
     "method": "forward-deployed agents plus Kairos receipts",
     "public_impact_today": "Ibex only",
@@ -100,14 +100,15 @@
       "repo": "https://github.com/athanor-ai/cv32e40p-athanor",
       "status": "active_exploration_no_accepted_optimization",
       "display_status": "active exploration; no accepted optimization yet",
-      "current_lead": "No accepted optimization yet. Current public tradeoff rows include interrupt-controller, load-store-unit, aligner, and FIFO candidates that improved one axis but failed activity or parent/reusable-scope timing.",
+      "current_lead": "No accepted optimization yet. Current public tradeoff rows include interrupt-controller, load-store-unit, aligner, FIFO, and multiplier candidates that improved one axis but failed activity or parent/reusable-scope timing.",
       "known_receipt": "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json",
       "known_receipts": [
         "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json",
         "receipts/cv32e40p/rejections/cv32e40p_load_store_unit_rotated_payload_tradeoff.json",
         "receipts/cv32e40p/rejections/cv32e40p_load_store_unit_data_sign_ext_tradeoff.json",
         "receipts/cv32e40p/rejections/cv32e40p_aligner_eq11_if_stage_tradeoff.json",
-        "receipts/cv32e40p/rejections/cv32e40p_fifo_push_pop_ok_factor_tradeoff.json"
+        "receipts/cv32e40p/rejections/cv32e40p_fifo_push_pop_ok_factor_tradeoff.json",
+        "receipts/cv32e40p/rejections/cv32e40p_mult_mulh_bits_tradeoff.json"
       ],
       "boundary": "Exploratory evidence only; no accepted or full-core CV32E40P optimization, no full-core power claim, no cold replay, and no headline/customer impact claim.",
       "next_gate": "Find a candidate that passes selected-flow area/timing, formal equivalence, activity/toggle checks, and replay without a required-axis regression."
@@ -199,6 +200,16 @@
       "summary": "The enclosing IF-stage selected-flow run reduced area 18228.732800 -> 18204.960000 (-0.130414%) and improved all five timing groups; activity was flat 21739 -> 21739 and a source-local predicate proof closed with three biting negatives. Rejected because the reusable prefetch-buffer scope regressed in2out, in2reg, overall, and reg2reg timing, so the standalone prefetch-buffer reuse caveat blocks promotion.",
       "rejection_reason": "reusable_scope_broad_timing_regression",
       "evidence": "receipts/cv32e40p/rejections/cv32e40p_fifo_push_pop_ok_factor_tradeoff.json"
+    },
+    {
+      "core": "cv32e40p",
+      "candidate": "cv32e40p_mult / mulh_bits",
+      "status": "rejected_tradeoff",
+      "display_status": "rejected tradeoff",
+      "scope": "selected_flow_parent_context_cv32e40p_ex_stage_mult_context",
+      "summary": "The MULH slice selected-flow run improved area 13207.667200 -> 13172.633600 (-0.265252%) and all five timing groups, and the EX-stage multiplier parent context reduced area 77151.494400 -> 76960.060800 (-0.248127%). Rejected because parent in2reg, reg2out, and reg2reg timing regressed; equivalence, activity, and replay were not run after the timing failure.",
+      "rejection_reason": "parent_context_timing_regression",
+      "evidence": "receipts/cv32e40p/rejections/cv32e40p_mult_mulh_bits_tradeoff.json"
     }
   ]
 }
