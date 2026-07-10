@@ -11,7 +11,7 @@ supports.
 
 ## Current Public Status
 
-Today, public RISC-V evidence includes five accepted Ibex artifacts and three
+Today, public RISC-V evidence includes five accepted Ibex artifacts and five
 scope-typed accepted CV32E40P artifacts. The Ibex evidence consists of two
 whole-core results and three module-level results. The CV32E40P evidence is
 accepted only at each row's measured parent-context scope; it is not a
@@ -100,9 +100,11 @@ are visible.
 | CV32E40P | `cv32e40p_alu / addsub_divvalid_adderneg_prefixes` | Accepted scope-typed optimization | Default ALU parent context only: area `29548.339200 -> 29208.012800` (`-1.151762%`); all five parent timing groups improve; activity flat `1482734 -> 1482734`; source-local combined predicate SAT closes with three biting negatives; non-additive with `alu_divrem_prefix_valid`; `customer_claim_ready=false`; not a whole-core or customer-ready claim | [`cv32e40p_alu_addsub_divvalid_adderneg_prefixes_accepted.json`](receipts/cv32e40p/accepted/cv32e40p_alu_addsub_divvalid_adderneg_prefixes_accepted.json) |
 | CV32E40P | `cv32e40p_prefetch_controller / prefetch_hwlp_flush_demorgan` | Accepted scope-typed optimization | Prefetch-buffer parent context only: area `7186.892800 -> 7170.627200` (`-0.226323%`); all five prefetch-buffer timing groups improve; activity flat `21739 -> 21739`; source-local predicate SAT closes with two biting negatives; IF-stage wrapper is neutral, not claimed as a win; `customer_claim_ready=false` | [`cv32e40p_prefetch_hwlp_flush_demorgan_accepted.json`](receipts/cv32e40p/accepted/cv32e40p_prefetch_hwlp_flush_demorgan_accepted.json) |
 | CV32E40P | `cv32e40p_prefetch_controller / prefetch_hwlp_plus_next_cnt_arith` | Accepted scope-typed optimization | Default IF-stage parent context with named local caveat: IF-stage area `18228.732800 -> 18187.443200` (`-0.226508%`); all five IF-stage timing groups improve; activity flat `21739 -> 21739`; source-local combined predicate SAT closes with two biting negatives; prefetch-buffer local `in2out` regresses `2.6664 -> 2.6492`, so this is not standalone prefetch-buffer reuse wording; non-additive with `prefetch_hwlp_flush_demorgan`; `customer_claim_ready=false` | [`cv32e40p_prefetch_hwlp_plus_next_cnt_arith_accepted.json`](receipts/cv32e40p/accepted/cv32e40p_prefetch_hwlp_plus_next_cnt_arith_accepted.json) |
+| CV32E40P | `cv32e40p_compressed_decoder / compressed_decoder_l71_addi4spn_zero_reduce` | Accepted scope-typed optimization | Default IF-stage parent context only: IF-stage area `18228.732800 -> 18207.462400` (`-0.116686%`); all five IF-stage timing groups improve; activity flat `52962 -> 52962`; source-local predicate SAT plus full compressed-decoder output SAT close with biting negatives; non-additive with `compressed_decoder_l244_addi16sp_lui_zero_reduce`; `customer_claim_ready=false` | [`cv32e40p_compressed_decoder_l71_addi4spn_zero_reduce_accepted.json`](receipts/cv32e40p/accepted/cv32e40p_compressed_decoder_l71_addi4spn_zero_reduce_accepted.json) |
+| CV32E40P | `cv32e40p_compressed_decoder / compressed_decoder_l244_addi16sp_lui_zero_reduce` | Accepted scope-typed optimization | Default IF-stage parent context only: IF-stage area `18228.732800 -> 18194.950400` (`-0.185325%`); all five IF-stage timing groups improve; activity flat `55386 -> 55386`; source-local predicate SAT plus full compressed-decoder output SAT close with biting negatives; non-additive with `compressed_decoder_l71_addi4spn_zero_reduce`; `customer_claim_ready=false` | [`cv32e40p_compressed_decoder_l244_addi16sp_lui_zero_reduce_accepted.json`](receipts/cv32e40p/accepted/cv32e40p_compressed_decoder_l244_addi16sp_lui_zero_reduce_accepted.json) |
 
-In short: Athanor currently has eight accepted optimization artifacts: five Ibex
-artifacts and three scope-typed CV32E40P parent-context artifacts. The current
+In short: Athanor currently has ten accepted optimization artifacts: five Ibex
+artifacts and five scope-typed CV32E40P parent-context artifacts. The current
 ATH-2698 top-level headline candidate is the PR #31 row: a modest but real
 `ibex_top` area improvement with timing, activity, and equivalence receipts.
 The larger Ibex improvements are module-scoped, and the CV32E40P rows are
@@ -145,7 +147,7 @@ candidate** is an early lead that has not yet passed the full evidence path.
 | Core | Current state | Best current lead | Next honest gate |
 | --- | --- | --- | --- |
 | Ibex | Active public design with accepted receipts | Additional candidates are checked only when they have fresh evidence to add or reject | Either add a new accepted result with evidence, or record that a checked candidate did not pass |
-| CV32E40P | Active exploration with three accepted parent-context optimizations | The ALU combined three-predicate packet and two prefetch-controller packets are accepted at their measured parent-context scopes; compressed-decoder candidates remain under scope-typed promotion review | Promote additional candidates only at their measured scope, carry non-additive relationships, and keep full-core/customer wording behind the ATH-2899/ATH-2901 gates |
+| CV32E40P | Active exploration with five accepted parent-context optimizations | The ALU combined three-predicate packet, two prefetch-controller packets, and two compressed-decoder packets are accepted at their measured parent-context scopes; rejected rows remain public where a candidate improved one axis but failed another | Promote additional candidates only at their measured scope, carry non-additive relationships, and keep full-core/customer wording behind the ATH-2899/ATH-2901 gates |
 | PicoRV32 | Selected-flow baseline and residual replay exist | Replay found two residual rows; both were rejected cheaply (`0 == mem_wstrb` was formal/assertion-only, and `pcpi_rs1 - pcpi_rs2` was area neutral) | Treat as evidence that this search path did not transfer unless a new search method appears |
 | SERV | Selected-flow baseline exists | Detector replay found zero candidates ready for deeper evaluation | Treat as evidence that this search path did not transfer |
 | ultraembedded/riscv | Selected-flow baseline exists | Source-only constant-prop leads disappeared after selected-flow residual replay | Treat as evidence that this search path did not transfer |

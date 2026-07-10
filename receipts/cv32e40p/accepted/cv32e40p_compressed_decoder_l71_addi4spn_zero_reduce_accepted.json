@@ -1,0 +1,146 @@
+{
+  "schema": "athanor_riscv_accepted_scope_typed_receipt_v1",
+  "core": "cv32e40p",
+  "artifact": "cv32e40p_compressed_decoder / compressed_decoder_l71_addi4spn_zero_reduce",
+  "status": "accepted_scope_typed_optimization",
+  "display_status": "accepted scope-typed optimization",
+  "scope": "default_if_stage_parent_context",
+  "summary": "The CV32E40P compressed-decoder c.addi4spn zero-immediate rewrite is accepted only at the measured default IF-stage parent-context scope: IF-stage area improves 18228.732800 -> 18207.462400 (-0.116686%), all five IF-stage timing groups improve, activity/toggle is flat 52962 -> 52962, and semantic evidence includes source-local predicate SAT plus full compressed-decoder output SAT across FPU/ZFINX tuples 00, 10, and 11 with biting negative controls. This row is non-additive with the c.addi16sp/c.lui compressed-decoder packet unless a combined packet is measured.",
+  "authorship": "Dexter agent, curated for CV32E40P scope-typed accepted rows on 2026-07-10",
+  "claim_taxonomy": {
+    "schema": "cv32_claim_taxonomy_v1",
+    "accepted_optimization": "claimed",
+    "claim_scope": "default_if_stage_parent_context",
+    "ppa_scope": "default IF-stage parent context",
+    "semantic_equivalence_scope": "source-local predicate plus full compressed-decoder equivalence",
+    "whole_core": "not_claimed",
+    "customer_impact": "not_claimed",
+    "customer_claim_ready": false,
+    "promotion_state": "not_customer_ready"
+  },
+  "metrics": {
+    "selected_flow": {
+      "top": "cv32e40p_if_stage",
+      "area": {
+        "baseline": 18228.7328,
+        "gate": 18207.4624,
+        "delta_percent": -0.116686,
+        "status": "improved"
+      },
+      "timing_slack": {
+        "in2out": {
+          "baseline": 1.1039,
+          "gate": 1.2191,
+          "delta": 0.1152,
+          "status": "improved"
+        },
+        "in2reg": {
+          "baseline": -1.876,
+          "gate": 0.1093,
+          "delta": 1.9853,
+          "status": "improved"
+        },
+        "overall": {
+          "baseline": -1.876,
+          "gate": -0.6471,
+          "delta": 1.2289,
+          "status": "improved"
+        },
+        "reg2out": {
+          "baseline": 0.9203,
+          "gate": 1.0938,
+          "delta": 0.1735,
+          "status": "improved"
+        },
+        "reg2reg": {
+          "baseline": -1.7646,
+          "gate": -0.6471,
+          "delta": 1.1175,
+          "status": "improved"
+        }
+      }
+    },
+    "module_flow": {
+      "top": "cv32e40p_compressed_decoder",
+      "area": {
+        "baseline": 1289.9872,
+        "gate": 1278.7264,
+        "delta_percent": -0.872939,
+        "status": "improved"
+      }
+    },
+    "activity": {
+      "method": "cv32_if_stage_compressed_decoder_l71_iverilog_vcd_hierarchy_toggle_v1",
+      "scope": "IF-stage parent-context activity proxy; not full-core power",
+      "baseline_toggles": 52962,
+      "gate_toggles": 52962,
+      "toggle_delta_percent": 0.0,
+      "boundary_equality_every_cycle": true,
+      "status": "flat"
+    }
+  },
+  "semantic_evidence": {
+    "source_local_predicate_sat": {
+      "positive_log_sha256": "1360a43cfa534a96c73ec45aa554d4ae69f10d473cf4a3e0cd8c0de8ff14d2db",
+      "negative_log_sha256s": [
+        "fa83434cee6b56c2f9ea17282ae41bef47df7ba8a726f5d41ff2b7a757fc03de",
+        "86c5dc2a9d691dabc9a6ee045ce13e4b2612caff34c95ddd829afa2c07ad8bbe"
+      ]
+    },
+    "full_decoder_equivalence": {
+      "scope": "full cv32e40p_compressed_decoder output miter",
+      "positive_tuples": [
+        "FPU0_ZFINX0",
+        "FPU1_ZFINX0",
+        "FPU1_ZFINX1"
+      ],
+      "positive_log_sha256s": [
+        "b4e27d32308c0a3ea07fa7095f933225603bad5dfde8f49d736f8b0842bd2012",
+        "dc2bc48bf6b8260f546049ccef74684953338787ee755bf624ebfae494356a22",
+        "3d17374f6dc38e7c077f27dd4b0125bfff362955b12a92c132c9c32441e1a164"
+      ],
+      "negative_log_sha256s": [
+        "0a712773ccf908e40a150e32764839cdd98a337c49c646b173c73b6263677427",
+        "686d9689924f006ec028072be5ebac06d4c98960b95a92b1e7567d3c2d156697"
+      ]
+    }
+  },
+  "source_delta": {
+    "replacement_count": 1,
+    "behavioral_movements_outside_predicate": 0,
+    "source_diff_sha256": "bd056bb42d7d786b0ce81f3e327ddb6fc26ce2ee56ab32f97cbb28145f207056"
+  },
+  "relationship_to_prior_packets": {
+    "not_additive_with": [
+      "compressed_decoder_l244_addi16sp_lui_zero_reduce"
+    ],
+    "reason": "Both packets change independent zero-detection predicates inside the same compressed decoder and measure the same IF-stage parent context. Keep them as separate candidate rows unless a combined packet is measured and replayed."
+  },
+  "evidence": {
+    "cv32e40p_athanor_pr": "https://github.com/athanor-ai/cv32e40p-athanor/pull/7",
+    "artifact_tree": "https://github.com/athanor-ai/cv32e40p-athanor/tree/d237959d34e014a0596549650c2ee03c2d3075ec/athanor_artifacts/compressed_decoder_l71_addi4spn_zero_reduce",
+    "manifest": "https://github.com/athanor-ai/cv32e40p-athanor/blob/d237959d34e014a0596549650c2ee03c2d3075ec/athanor_artifacts/compressed_decoder_l71_addi4spn_zero_reduce/cv32e40p_compressed_decoder_l71_manifest.json",
+    "manifest_sha256": "1970896f32ef94de2c800fd39735c95ca4c3c76b536c655a05ae79483bab4b14",
+    "commands_sha256": "e8032cb116a31c8893ebb1501cad8d7e9890a7e16c62458caf71bc8e785de5e1",
+    "predicate_summary_sha256": "2c583a781fd24767c8111e02cea91e9146df82ea7e9fe367da48d88875e10664",
+    "full_decoder_summary_sha256": "8c2ba502ed660f9cfb7a4cb148059e5d34c49de0679b9ca3d30cde7a2cb80494",
+    "activity_receipt_sha256": "1c3b64713a1d310253ac4dd84d5886d6c2d7124092d5eb715e9beb912720ee15",
+    "source_artifact_commit": "d237959d34e014a0596549650c2ee03c2d3075ec",
+    "kairos_native_receipt_type": "source-local predicate plus full compressed-decoder equivalence"
+  },
+  "replay_commands": [
+    "sha256sum -c SHA256SUMS",
+    "python3 replay_source_delta.py",
+    "python3 replay_predicate_equiv.py",
+    "python3 replay_full_decoder_equiv.py",
+    "python3 replay_selected_summary.py",
+    "OUT_DIR=/tmp/cv32-compressed-l71-activity-replay python3 activity/replay_toggle.py"
+  ],
+  "not_claimed": [
+    "whole-core CV32E40P result",
+    "customer_claim_ready",
+    "customer impact claim",
+    "full-core power claim",
+    "additive combination with compressed_decoder_l244_addi16sp_lui_zero_reduce"
+  ]
+}
