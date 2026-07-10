@@ -1,0 +1,99 @@
+{
+  "activity": {
+    "status": "not_run",
+    "reason": "The IF-stage parent selected-flow bar failed on area and timing, so no activity or toggle packet was spent."
+  },
+  "authorship": "Dexter agent, 2026-07-10",
+  "candidate": "cv32e40p_compressed_decoder / compressed_l599_ne_11",
+  "classification": "module_area_positive_if_stage_area_and_timing_negative_no_promotion",
+  "core": "cv32e40p",
+  "display_status": "rejected tradeoff",
+  "equivalence": {
+    "status": "not_run",
+    "reason": "The IF-stage parent selected-flow bar failed, so no formal equivalence packet was spent."
+  },
+  "fork_head": "246d7eb4bfbc4c49999e1838aada10a31397f356",
+  "not_claimed": [
+    "accepted CV32E40P optimization",
+    "whole-core CV32E40P result",
+    "IF-stage formal equivalence proof",
+    "activity or power improvement",
+    "cold replay",
+    "customer impact claim"
+  ],
+  "replay": {
+    "status": "not_run",
+    "reason": "Replay is reserved for candidates that pass the consuming-parent selected-flow area and timing bar."
+  },
+  "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+  "scope": "module_positive_with_if_stage_parent_context_rejection",
+  "selected_flow": {
+    "description": "Scratch selected-flow runs for the compressed-decoder module and the IF-stage parent context.",
+    "if_stage_parent": {
+      "area": {
+        "baseline": 18228.7328,
+        "delta_pct": 0.212781,
+        "gate": 18267.52
+      },
+      "baseline_bundle_sha256": "2840d83692ee690b08339bd20376f725021a2540714a99257d9fa89bfab0c493",
+      "baseline_manifest_sha256": "f03e5a23761967cc08bdec249437f24c937ac9ff3a914356edfa73ff068ac2a0",
+      "gate_bundle_sha256": "d9e084e20e6883cbfdc23c409438435fae30a939eb02f31cfbbea786014a99e6",
+      "gate_manifest_sha256": "7ea239a61268aa62e255fa473315fbdbe0d6de6ddaf37151117228abaf9fb4b9",
+      "timing_slack_ns": {
+        "in2out": {
+          "baseline": 1.1039,
+          "delta": 0.0605,
+          "gate": 1.1644,
+          "status": "improved"
+        },
+        "in2reg": {
+          "baseline": -1.876,
+          "delta": -0.1056,
+          "gate": -1.9816,
+          "status": "regressed"
+        },
+        "overall": {
+          "baseline": -1.876,
+          "delta": -0.1056,
+          "gate": -1.9816,
+          "status": "regressed"
+        },
+        "reg2out": {
+          "baseline": 0.9203,
+          "delta": 0.0004,
+          "gate": 0.9207,
+          "status": "improved"
+        },
+        "reg2reg": {
+          "baseline": -1.7646,
+          "delta": -0.1073,
+          "gate": -1.8719,
+          "status": "regressed"
+        }
+      },
+      "top": "cv32e40p_if_stage"
+    },
+    "module": {
+      "area": {
+        "baseline": 1289.9872,
+        "delta_pct": -0.872939,
+        "gate": 1278.7264
+      },
+      "baseline_bundle_sha256": "59a97790818aeec0321da3c5a81bf92722eb1677abe1e5c344fad4dd13c23d69",
+      "baseline_manifest_sha256": "b7912d690a6a478b452c886b61fbe8cbf894a21720c0bbb141ed6376a9ec6fbe",
+      "gate_bundle_sha256": "6c857f0a27990c0ca1f666a83eecf56aa5c76210a74e1d8281db3ccbf8421e98",
+      "gate_manifest_sha256": "097574fc1ae8163dabcd1cc7ff9fc75a36fe68992b09443a56daa37108cc9089",
+      "top": "cv32e40p_compressed_decoder"
+    }
+  },
+  "source_delta": {
+    "gate_source_sha256": "ba10a4d839bd87806110e6bbff894cd82df11a24a29ac5052eb9b5a5fa63c3cd",
+    "new_predicate": "(~&instr_i[1:0])",
+    "old_predicate": "instr_i[1:0] != 2'b11",
+    "summary": "The compressed-instruction low-bit inequality at line 599 was rewritten as the equivalent reduction-NAND predicate."
+  },
+  "status": "rejected_tradeoff",
+  "summary": "Rejected because the compressed-decoder module selected-flow run improved area, but the consuming IF-stage parent context increased area and regressed in2reg, overall, and reg2reg timing.",
+  "what_changed": "The compressed decoder's instr_i[1:0] != 2'b11 predicate was rewritten as ~&instr_i[1:0].",
+  "why_rejected": "The module-local area win did not survive integration: the IF-stage parent context increased area 18228.732800 -> 18267.520000 and regressed three required timing groups, so the candidate stopped before equivalence, activity, or replay spend."
+}

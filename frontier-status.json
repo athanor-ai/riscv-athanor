@@ -1,6 +1,6 @@
 {
   "schema": "athanor_riscv_frontier_status_v1",
-  "updated_utc": "2026-07-10T10:54:54Z",
+  "updated_utc": "2026-07-10T13:29:51Z",
   "claim_policy": {
     "method": "forward-deployed agents plus Kairos receipts",
     "public_impact_today": "Ibex only",
@@ -100,7 +100,7 @@
       "repo": "https://github.com/athanor-ai/cv32e40p-athanor",
       "status": "active_exploration_no_accepted_optimization",
       "display_status": "active exploration; no accepted optimization yet",
-      "current_lead": "No accepted optimization yet. Current public tradeoff rows include interrupt-controller, load-store-unit, aligner, FIFO, multiplier, CSR, ALU, and popcount candidates that improved one axis but failed activity, timing, or parent/reusable-scope timing.",
+      "current_lead": "No accepted optimization yet. Current public tradeoff rows include interrupt-controller, load-store-unit, aligner, FIFO, multiplier, CSR, ALU, popcount, and compressed-decoder candidates that improved one axis but failed activity, timing, or parent/reusable-scope timing.",
       "known_receipt": "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json",
       "known_receipts": [
         "receipts/cv32e40p/rejections/cv32e40p_int_controller_reachable_irq_loop_encoder_tradeoff.json",
@@ -111,7 +111,8 @@
         "receipts/cv32e40p/rejections/cv32e40p_mult_mulh_bits_tradeoff.json",
         "receipts/cv32e40p/rejections/cv32e40p_cs_registers_mhpmevent_impl_range_tradeoff.json",
         "receipts/cv32e40p/rejections/cv32e40p_alu_divvalid_divzero_tradeoff.json",
-        "receipts/cv32e40p/rejections/cv32e40p_popcnt_nibble_lut_tradeoff.json"
+        "receipts/cv32e40p/rejections/cv32e40p_popcnt_nibble_lut_tradeoff.json",
+        "receipts/cv32e40p/rejections/cv32e40p_compressed_decoder_l599_ne11_tradeoff.json"
       ],
       "boundary": "Exploratory evidence only; no accepted or full-core CV32E40P optimization, no full-core power claim, no cold replay, and no headline/customer impact claim.",
       "next_gate": "Find a candidate that passes selected-flow area/timing, formal equivalence, activity/toggle checks, and replay without a required-axis regression."
@@ -243,6 +244,16 @@
       "summary": "The popcount rewrite improved module area 934.646400 -> 932.144000 (-0.267738%) and ALU-parent area 29841.120000 -> 29674.710400 (-0.557652%), closed the module output SAT check with a biting bad-nibble control, and stayed activity-neutral in the ALU-parent proxy. Rejected because the enclosing EX-stage ALU context regressed reg2out timing -1.2725 -> -1.8126; there is no EX-stage proof/activity receipt or customer-impact claim.",
       "rejection_reason": "ex_stage_reg2out_timing_regression",
       "evidence": "receipts/cv32e40p/rejections/cv32e40p_popcnt_nibble_lut_tradeoff.json"
+    },
+    {
+      "core": "cv32e40p",
+      "candidate": "cv32e40p_compressed_decoder / compressed_l599_ne_11",
+      "status": "rejected_tradeoff",
+      "display_status": "rejected tradeoff",
+      "scope": "module_positive_with_if_stage_parent_context_rejection",
+      "summary": "The compressed-decoder module selected-flow run improved area 1289.987200 -> 1278.726400 (-0.872939%). Rejected because the consuming IF-stage parent context increased area 18228.732800 -> 18267.520000 (+0.212781%) and regressed in2reg, overall, and reg2reg timing; equivalence, activity, and replay were not run after the parent-context failure.",
+      "rejection_reason": "if_stage_parent_area_and_timing_regression",
+      "evidence": "receipts/cv32e40p/rejections/cv32e40p_compressed_decoder_l599_ne11_tradeoff.json"
     }
   ]
 }
