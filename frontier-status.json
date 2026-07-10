@@ -1,6 +1,6 @@
 {
   "schema": "athanor_riscv_frontier_status_v1",
-  "updated_utc": "2026-07-10T15:47:06Z",
+  "updated_utc": "2026-07-10T15:50:29Z",
   "claim_policy": {
     "method": "forward-deployed agents plus Kairos receipts",
     "public_impact_today": "Ibex only",
@@ -189,6 +189,16 @@
       "summary": "The selected Yosys 0.66 public verifier row improves PMP chip area 13042.508800 -> 11410.944000 (-12.5096%) and keeps the toggle proxy flat 2664 -> 2664. Rejected as a full-PPA frontier row because combinational max propagation delay regresses 5.467ns -> 5.515ns.",
       "rejection_reason": "combinational_max_propagation_delay_regression",
       "evidence": "receipts/ibex/rejections/ibex_pmp_tor_comparator_share_tradeoff.json"
+    },
+    {
+      "core": "ibex",
+      "candidate": "ibex_alu / bwlogic_or_from_xor_and",
+      "status": "rejected_tradeoff",
+      "display_status": "rejected tradeoff",
+      "scope": "module_local_ibex_alu_selected_toolchain",
+      "summary": "The selected Yosys 0.66 public verifier row improves ALU chip area 5471.497600 -> 5122.412800 (-6.3801%) and keeps the toggle proxy flat 5977 -> 5977. Rejected as a full-PPA frontier row because combinational max propagation delay regresses 8.83ns -> 10.56ns (+19.5923%).",
+      "rejection_reason": "combinational_max_propagation_delay_regression",
+      "evidence": "receipts/ibex/rejections/ibex_alu_bwlogic_tradeoff.json"
     },
     {
       "core": "cv32e40p",
