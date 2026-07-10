@@ -1,6 +1,6 @@
 {
   "schema": "athanor_riscv_frontier_status_v1",
-  "updated_utc": "2026-07-10T15:40:22Z",
+  "updated_utc": "2026-07-10T15:47:06Z",
   "claim_policy": {
     "method": "forward-deployed agents plus Kairos receipts",
     "public_impact_today": "Ibex only",
@@ -179,6 +179,16 @@
       "summary": "The LSU module-local selected-flow run improved area 4695.753600 -> 4664.473600 (-0.6662%) and max data-arrival timing 5.59ns -> 3.89ns, while Yosys equivalence proved 287/287 cells. Rejected because deterministic LSU-local toggle replay regressed 55424 -> 56421 (+1.79886%).",
       "rejection_reason": "toggle_power_proxy_regression",
       "evidence": "receipts/ibex/rejections/ibex_load_store_unit_signext_factor_tradeoff.json"
+    },
+    {
+      "core": "ibex",
+      "candidate": "ibex_pmp / tor_boundary_comparator_share",
+      "status": "rejected_tradeoff",
+      "display_status": "rejected tradeoff",
+      "scope": "module_local_ibex_pmp_selected_toolchain",
+      "summary": "The selected Yosys 0.66 public verifier row improves PMP chip area 13042.508800 -> 11410.944000 (-12.5096%) and keeps the toggle proxy flat 2664 -> 2664. Rejected as a full-PPA frontier row because combinational max propagation delay regresses 5.467ns -> 5.515ns.",
+      "rejection_reason": "combinational_max_propagation_delay_regression",
+      "evidence": "receipts/ibex/rejections/ibex_pmp_tor_comparator_share_tradeoff.json"
     },
     {
       "core": "cv32e40p",
