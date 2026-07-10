@@ -1,0 +1,158 @@
+{
+  "activity": {
+    "boundary_equality_every_cycle": true,
+    "common_paths": 110,
+    "cycles": 260,
+    "gate_toggles": 21739,
+    "gate_vcd_gzip_sha256": "a5c1ce961ae3301ec9256ca807a148af989c69bd63f712116784624ede920604",
+    "gold_toggles": 21739,
+    "gold_vcd_gzip_sha256": "75ba4a990e2d6db5ad64abb616474bf8b51fa77b26812d506013e3ceb4fa8d69",
+    "method": "cv32_prefetch_buffer_iverilog_vcd_hierarchy_toggle_v1",
+    "status": "flat",
+    "toggle_delta_pct": 0.0,
+    "trace_receipt_sha256": "e8697caf28ea1ba36fe22de67cee5e1910015bbdcd4a6d6f33b805ccaf774dfc"
+  },
+  "authorship": "Dexter agent, 2026-07-10",
+  "candidate": "cv32e40p_fifo / push_pop_ok_factor",
+  "classification": "if_stage_clean_but_prefetch_buffer_broad_timing_regression_no_promotion",
+  "core": "cv32e40p",
+  "display_status": "rejected tradeoff",
+  "fork_head": "6033d2b1be3295ec774d17ac4cf226faacfdeb08",
+  "not_claimed": [
+    "accepted CV32E40P optimization",
+    "whole-core CV32E40P result",
+    "full parent formal equivalence proof",
+    "cold replay",
+    "customer impact claim"
+  ],
+  "replay": {
+    "status": "not_run",
+    "reason": "The reusable prefetch-buffer timing bar failed broadly, so no replay package was spent."
+  },
+  "schema": "athanor_riscv_rejected_tradeoff_receipt_v1",
+  "scope": "dual_scope_if_stage_observation_with_prefetch_buffer_reuse_caveat",
+  "selected_flow": {
+    "description": "Scratch selected-flow runs for the enclosing cv32e40p_if_stage and the reusable cv32e40p_prefetch_buffer scope.",
+    "enclosing_if_stage": {
+      "area": {
+        "baseline": 18228.7328,
+        "delta_pct": -0.130414,
+        "gate": 18204.96
+      },
+      "baseline_bundle_sha256": "2840d83692ee690b08339bd20376f725021a2540714a99257d9fa89bfab0c493",
+      "baseline_manifest_sha256": "904d8263e2738860bea5b8b086c5a212ef65d8d04f56d73162e6dc4ebdce5a4e",
+      "gate_bundle_sha256": "93d4781d3ca437862cad542c065ba8d37196e1217c145011df97d473c032c90b",
+      "gate_manifest_sha256": "d0e658aadcedaa1779caff3cb93067f156d66e1f5c11a6ef8ca095d1700a03ab",
+      "timing_slack_ns": {
+        "in2out": {
+          "baseline": 1.1039,
+          "delta": 0.0261,
+          "gate": 1.13,
+          "status": "improved"
+        },
+        "in2reg": {
+          "baseline": -1.876,
+          "delta": 1.394,
+          "gate": -0.482,
+          "status": "improved"
+        },
+        "overall": {
+          "baseline": -1.876,
+          "delta": 0.8986,
+          "gate": -0.9774,
+          "status": "improved"
+        },
+        "reg2out": {
+          "baseline": 0.9203,
+          "delta": 0.0732,
+          "gate": 0.9935,
+          "status": "improved"
+        },
+        "reg2reg": {
+          "baseline": -1.7646,
+          "delta": 0.7872,
+          "gate": -0.9774,
+          "status": "improved"
+        }
+      },
+      "top": "cv32e40p_if_stage"
+    },
+    "reusable_prefetch_buffer": {
+      "area": {
+        "baseline": 7186.8928,
+        "delta_pct": -0.766017,
+        "gate": 7131.84
+      },
+      "baseline_bundle_sha256": "f6432f7f87101e8d7e7edc07029b34531bd534439535184e9e0e4d42256bd6b2",
+      "baseline_manifest_sha256": "2adce4478d90e45b2dd26b9d6bc3ce9d15e8ca9ede5693db14c3b16a9d91f027",
+      "gate_bundle_sha256": "a1234a09d6bd22bc10eb5ee9b7754d5c3f63867ff11b998aec275d83c5f1c21f",
+      "gate_manifest_sha256": "9e2181c7be63ecbf45f34f7e3b5627c39013dbcd8b3ae2a568bad70e5309b321",
+      "standalone_reuse_caveat": "A customer or integrator reusing cv32e40p_prefetch_buffer by itself would inherit four local timing regressions even though the enclosing IF-stage measurement absorbs them.",
+      "timing_slack_ns": {
+        "in2out": {
+          "baseline": 2.6664,
+          "delta": -0.0609,
+          "gate": 2.6055,
+          "status": "regressed"
+        },
+        "in2reg": {
+          "baseline": 0.3554,
+          "delta": -0.0008,
+          "gate": 0.3546,
+          "status": "regressed"
+        },
+        "overall": {
+          "baseline": -0.7369,
+          "delta": -0.0367,
+          "gate": -0.7736,
+          "status": "regressed"
+        },
+        "reg2out": {
+          "baseline": 0.0782,
+          "delta": 0.5302,
+          "gate": 0.6084,
+          "status": "improved"
+        },
+        "reg2reg": {
+          "baseline": -0.7369,
+          "delta": -0.0367,
+          "gate": -0.7736,
+          "status": "regressed"
+        }
+      },
+      "top": "cv32e40p_prefetch_buffer"
+    }
+  },
+  "source_delta": {
+    "canonical_diff_sha256": "f31d18801b97ae161972fa88b941788983c3f61523c68a1434dd7a8c4759424a",
+    "gate_source_sha256": "a59e1b400b0d764ad0279ec14153cfb8e22b6bf12fd432af20cbdb014a21b55d",
+    "gold_source_sha256": "d910cbd0751f38d349e8975de22b43d0a2937f9e905b0d9b82894fd83c53fe8a",
+    "summary": "Adds push_ok and pop_ok helper predicates, then replaces the push, pop, and simultaneous push/pop count-stability predicates with those helpers."
+  },
+  "source_local_equivalence": {
+    "miter_sha256": "b45e9dc9833a07cc1a7332a5724e23d1170ae381147919804e1a211b8593db87",
+    "negative_controls": {
+      "negative_missing_empty": {
+        "log_sha256": "81830a819daed93671f57d38fa461f12c46c86c1f5b3e58c838c71aadd2ce7b8",
+        "result": "biting"
+      },
+      "negative_missing_full": {
+        "log_sha256": "ff3e6588c328fd1b4347f7fb2aeb195bdac884ba501d19aaaf3c8872a128422b",
+        "result": "biting"
+      },
+      "negative_stable_or": {
+        "log_sha256": "b3a1496cfb3da48f3952ad42abb4dcf8abcd38d00735d5f5914b218bbead962f",
+        "result": "biting"
+      }
+    },
+    "positive": {
+      "log_sha256": "57e785184ecd7aaa88adab404d329e26ccdbe4684e4ed708c8113f7c8e192323",
+      "result": "closed"
+    },
+    "summary_sha256": "0a1124ade5bed7f290837dba1c1e61800e6586a1463c5948fd4bcd3ee7f628a2"
+  },
+  "status": "rejected_tradeoff",
+  "summary": "Rejected because the enclosing IF-stage selected-flow run reduced area and improved all timing groups, and activity was flat, but the reusable prefetch-buffer scope regressed four timing groups.",
+  "what_changed": "The FIFO push/pop acceptance predicates were factored into push_ok and pop_ok helper wires and reused in the push, pop, and simultaneous push/pop count-stability branches.",
+  "why_rejected": "The wider IF-stage measurement absorbs the local cost, but the immediate reusable cv32e40p_prefetch_buffer scope is broadly timing-worse across in2out, in2reg, overall, and reg2reg. Packaging this as a win would hide a standalone-prefetch-buffer reuse caveat through hierarchy, so the candidate is recorded as a rejected tradeoff instead of a replay packet."
+}
