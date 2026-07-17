@@ -138,8 +138,7 @@ def render(data: dict[str, Any]) -> str:
         "- CI runs the same check and fails if the README is stale, a linked receipt is missing, or a receipt JSON is not indexed.",
         "",
         "This keeps wins for existing cores such as Ibex, CV32E40P, and OpenC910 visible without hand-editing "
-        "the README. The next automation step is for each owning core repo to publish the same status JSON shape "
-        "so this umbrella can ingest it instead of copying summaries by hand.",
+        "the README.",
         "",
         "## How To Read This Page",
         "",
@@ -225,7 +224,7 @@ def render(data: dict[str, Any]) -> str:
         "",
         "## Exploratory Work",
         "",
-        "These rows are reconnaissance, baselines, or candidates that still need more evidence. "
+        "These rows are reconnaissance, baselines, or candidates that have not closed the full evidence bar. "
         "They are not optimization claims.",
         "",
     ])

@@ -37,7 +37,7 @@ Do not over-read the table:
 - Run `python3 scripts/render_frontier_readme.py --check` before merging.
 - CI runs the same check and fails if the README is stale, a linked receipt is missing, or a receipt JSON is not indexed.
 
-This keeps wins for existing cores such as Ibex, CV32E40P, and OpenC910 visible without hand-editing the README. The next automation step is for each owning core repo to publish the same status JSON shape so this umbrella can ingest it instead of copying summaries by hand.
+This keeps wins for existing cores such as Ibex, CV32E40P, and OpenC910 visible without hand-editing the README.
 
 ## How To Read This Page
 
@@ -112,7 +112,7 @@ These are public because they are useful engineering evidence, not because they 
 
 ## Exploratory Work
 
-These rows are reconnaissance, baselines, or candidates that still need more evidence. They are not optimization claims.
+These rows are reconnaissance, baselines, or candidates that have not closed the full evidence bar. They are not optimization claims.
 
 | Core | Current state | Best current lead | Next evidence gate |
 | --- | --- | --- | --- |
