@@ -9,7 +9,7 @@
       "accepted_whole_core_result": "Accepted whole-core result: an optimization that stayed beneficial after integration into the whole processor and passed the recorded area, timing, activity, formal-equivalence, and replay checks.",
       "accepted_module_artifact": "Accepted module-level result: an optimization with evidence for one named RTL module; it is not a whole-core processor claim.",
       "accepted_module_local_artifact": "Accepted module-local proof result: an optimization with evidence for one named RTL module and its local proof obligations; it is not a whole-core processor claim.",
-      "exploratory_lead": "Exploratory lead: a baseline, reconnaissance result, or early candidate that has not yet passed the full evidence path and is not an optimization claim.",
+      "exploratory_lead": "Research row: a baseline, reconnaissance result, or early candidate that has not passed the full evidence path and is not an optimization claim.",
       "receipt": "Machine-readable evidence file or hosted run linked from a row; it is the starting point for independently checking the claim.",
       "rejected_tradeoff": "Rejected tradeoff: a candidate with at least one favorable checked axis, such as area or timing, that is not accepted because another required axis regressed.",
       "accepted_scope_typed_optimization": "Accepted scope-typed optimization: an optimization accepted only for the named measured scope in its receipt; it is not a whole-core, customer-ready, or additive-composition claim unless those scopes are explicitly claimed."
@@ -292,7 +292,7 @@
       "core": "openc910",
       "repo": "https://github.com/athanor-ai/openc910-athanor",
       "status": "active_public_design_with_promoted_module_packets",
-      "display_status": "active out-of-order RISC-V design with promoted module-local packets and public scout ledger",
+      "display_status": "four promoted module-local packets; scout ledger public",
       "current_lead": "Four promoted module-local packets plus parent-integrated scouts and hard negatives in the OpenC910 evidence ledger.",
       "next_gate": "Promote only composed parent/subsystem results that close same-candidate metrics, proof, negative controls, and non-author replay at the measured parent scope."
     },
@@ -300,14 +300,14 @@
       "core": "ibex",
       "repo": "https://github.com/athanor-ai/ibex-athanor",
       "status": "active_public_design_with_accepted_receipts",
-      "display_status": "active design with accepted Ibex evidence",
+      "display_status": "five accepted Ibex results",
       "current_gate": "Check additional Ibex candidates only when they have fresh evidence to add or reject."
     },
     {
       "core": "cv32e40p",
       "repo": "https://github.com/athanor-ai/cv32e40p-athanor",
       "status": "active_exploration_with_scope_typed_accepted_optimizations",
-      "display_status": "active exploration with five accepted parent-context optimizations",
+      "display_status": "five accepted parent-context optimizations",
       "current_lead": "Accepted CV32E40P rows now cover cv32e40p_alu / addsub_divvalid_adderneg_prefixes at default ALU parent-context scope, two prefetch-controller packets at their measured prefetch-buffer or IF-stage parent-context scopes, and two compressed-decoder packets at default IF-stage parent-context scope. Public tradeoff rows still record candidates that improved one axis but failed activity, timing, or parent/reusable-scope timing.",
       "known_receipt": "receipts/cv32e40p/accepted/cv32e40p_alu_addsub_divvalid_adderneg_prefixes_accepted.json",
       "known_receipts": [
